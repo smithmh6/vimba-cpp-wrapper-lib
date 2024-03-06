@@ -1,0 +1,1 @@
+# vimba-cpp-wrapper-lib
