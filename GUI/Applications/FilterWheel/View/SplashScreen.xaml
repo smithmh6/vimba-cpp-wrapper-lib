@@ -1,0 +1,65 @@
+﻿<Window x:Class="FilterWheel.View.SplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        mc:Ignorable="d" Height="264" Width="480"
+        WindowStyle="None" WindowStartupLocation="CenterScreen" Background="{telerik:FluentResource ResourceKey=AlternativeBrush}" ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="../Resources/Thorlabs_Logo.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                    <Setter Property="Foreground" Value="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                </Style>
+                <Style x:Key="WindowCloseButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource WindowCloseButtonStyle}">
+                    <Setter Property="Foreground" Value="{telerik:FluentResource ResourceKey=MarkerBrush}" />
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Image Source="{DynamicResource Thorlabs_LogoDrawingImage}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="14"/>
+        <telerik:RadButton Grid.Row="0" x:Name="PART_CloseButton" HorizontalAlignment="Right" Click="PART_CloseButton_Click"
+            Style="{StaticResource WindowCloseButtonStyle}"
+            Width="24"
+            Height="24">
+            <ToolTipService.ToolTip>
+                <ToolTip telerik:LocalizationManager.ResourceKey="Close"/>
+            </ToolTipService.ToolTip>
+            <TextBlock FontSize="16"
+                telerik:GlyphAdorner.ShowGlyphInDesignTime="True"
+                FontFamily="{StaticResource TelerikWebUI}"
+                Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type telerik:RadButton}}}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                FontWeight="Normal" FontStyle="Normal">
+                <Run Text="{StaticResource GlyphClose}" />
+            </TextBlock>
+        </telerik:RadButton>
+        <Grid Grid.Row="1">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Filter Wheel Imager"
+                       FontSize="40"/>
+            <telerik:RadProgressBar IsIndeterminate="True" Minimum="0" Maximum="100"
+                                    VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                    Margin="0,0,0,16"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="CopyRightTB" Grid.Column="0" HorizontalAlignment="Left" FontSize="12"/>
+            <!--<telerik:RadProgressBar Grid.Row="2" IsIndeterminate="True" Grid.Column="1"/>-->
+            <TextBlock Name="VersionTB" Grid.Column="2" HorizontalAlignment="Right" FontSize="12"/>
+        </Grid>
+    </Grid>
+
+</Window>

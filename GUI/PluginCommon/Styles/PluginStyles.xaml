@@ -1,0 +1,568 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:shared="clr-namespace:FilterWheelShared.Controls;assembly=FilterWheelShared">
+
+    <!-- Make TextBox respond the "Enter" key-->
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Style.Setters>
+            <Setter Property="shared:InputBindingsManager.UpdatePropertySourceWhenEnterPressed" Value="TextBox.Text"/>
+        </Style.Setters>
+    </Style>
+    
+    <!-- Customized styles for WPF control here -->
+    <!-- Telerik.Windows.Controls is needed to be added as assembly reference for these styles -->
+    <!--
+    <Style x:Key="{x:Type Label}" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="{telerik:FluentResource ResourceKey=MarkerBrush}" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+    </Style>
+
+    <Style x:Key="{x:Type Border}" TargetType="{x:Type Border}">
+        <Setter Property="BorderBrush" Value="{telerik:FluentResource ResourceKey=BasicBrush}"/>
+    </Style>
+
+    <BorderGapMaskConverter x:Key="BorderGapMaskConverter"/>
+    <Style TargetType="{x:Type GroupBox}">
+        <Setter Property="BorderBrush" Value="{telerik:FluentResource ResourceKey=BasicBrush}"/>
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GroupBox}">
+                    <Grid SnapsToDevicePixels="true">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="6" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="6" />
+                        </Grid.RowDefinitions>
+                        <Border CornerRadius="4" Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="Transparent" Background="{TemplateBinding Background}" />
+                        <Border Name="Header" Padding="3,1,3,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                            <ContentPresenter ContentSource="Header" RecognizesAccessKey="true" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Border>
+                        <ContentPresenter Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Border Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="4"  BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3">
+                            <Border.OpacityMask>
+                                <MultiBinding Converter="{StaticResource BorderGapMaskConverter}" ConverterParameter="7">
+                                    <Binding ElementName="Header" Path="ActualWidth" />
+                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}" />
+                                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}" />
+                                </MultiBinding>
+                            </Border.OpacityMask>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type DataGrid}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{telerik:FluentResource ResourceKey=AlternativeBrush}" />
+        <Setter Property="Foreground" Value="{telerik:FluentResource ResourceKey=MarkerBrush}" />
+        <Setter Property="BorderBrush" Value="{telerik:FluentResource ResourceKey=BasicBrush}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="HorizontalGridLinesBrush" Value="{telerik:FluentResource ResourceKey=BasicBrush}"/>
+        <Setter Property="VerticalGridLinesBrush" Value="{telerik:FluentResource ResourceKey=BasicBrush}"/>
+    </Style>
+
+    <Style TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Background" Value="{telerik:FluentResource ResourceKey=AlternativeBrush}" />
+        <Setter Property="Foreground" Value="{telerik:FluentResource ResourceKey=MarkerBrush}" />
+        <Setter Property="BorderBrush" Value="{telerik:FluentResource ResourceKey=BasicBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridColumnHeader">
+                    <Border BorderBrush="{telerik:FluentResource ResourceKey=BasicBrush}" BorderThickness="0,0,0,1" SnapsToDevicePixels="True" UseLayoutRounding="True">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type DataGridRow}">
+        <Setter Property="Background" Value="{telerik:FluentResource ResourceKey=AlternativeBrush}" />
+        <Setter Property="BorderBrush" Value="{telerik:FluentResource ResourceKey=BasicBrush}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{telerik:FluentResource ResourceKey=PrimaryBackgroundBrush}" />
+                <Setter Property="Foreground" Value="{telerik:FluentResource ResourceKey=MarkerBrush}" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{telerik:FluentResource ResourceKey=AccentBrush}" />
+                <Setter Property="Foreground" Value="{telerik:FluentResource ResourceKey=PrimaryBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    -->
+    
+    <!-- Customized styles for Telerik control below -->
+
+    <!-- RadToggleButton -->
+    <!-- Telerik.Windows.Controls is needed to be added as assembly reference for this style-->
+    <!--
+    <Style x:Key="{x:Type telerik:RadToggleButton}"  TargetType="{x:Type telerik:RadToggleButton}" BasedOn="{StaticResource RadToggleButtonStyle}">
+        <Setter Property="Background" Value="{telerik:FluentResource ResourceKey=AlternativeBrush}" />
+    </Style>
+    -->
+
+    <!-- RadRadioButton -->
+    <!-- Telerik.Windows.Controls is needed to be added as assembly reference for this style-->
+    <!--
+    <Style x:Key="{x:Type telerik:RadRadioButton}"  TargetType="{x:Type telerik:RadRadioButton}" BasedOn="{StaticResource RadRadioButtonStyle}">
+        <Setter Property="Background" Value="{telerik:FluentResource ResourceKey=AlternativeBrush}" />
+    </Style>
+    -->
+
+    <!--RadToggleSwitchButton-->
+    <!-- Telerik.Windows.Controls is needed to be added as assembly reference for this style-->
+    <!--
+    <Style x:Key="{x:Type telerik:RadToggleSwitchButton}" TargetType="{x:Type telerik:RadToggleSwitchButton}" BasedOn="{StaticResource RadToggleSwitchButtonStyle}">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="TrackWidth" Value="45" />
+        <Setter Property="TrackHeight" Value="18" />
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:RadToggleSwitchButton}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition>
+                                <ColumnDefinition.Width>
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="TrackWidth"/>
+                                </ColumnDefinition.Width>
+                            </ColumnDefinition>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter x:Name="UncheckedContent" Grid.Column="2" Margin="{TemplateBinding Control.Padding}"
+                              TextBlock.Foreground="{TemplateBinding Control.Foreground}"
+                              Content="{TemplateBinding telerik:RadToggleSwitchButton.UncheckedContent}"
+                              ContentTemplate="{TemplateBinding telerik:RadToggleSwitchButton.UncheckedContentTemplate}"
+                              HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                              ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                              RecognizesAccessKey="true"/>
+                        <Grid Column="1" SnapsToDevicePixels="true" Height="{TemplateBinding telerik:RadToggleSwitchButton.TrackHeight}">
+                            <Rectangle x:Name="TrackBackground" RadiusX="8" RadiusY="8" Fill="{TemplateBinding Control.Background}"
+                                Stroke="{TemplateBinding Control.BorderBrush}" Opacity="0"
+                                StrokeThickness="{TemplateBinding Control.BorderThickness}"/>
+                            <Rectangle x:Name="UncheckedTrackBackground" RadiusX="8" RadiusY="8"
+                                StrokeThickness="{TemplateBinding Control.BorderThickness}">
+                                <Shape.Fill>
+                                    <telerik:FluentResourceExtension ResourceKey="MainBrush"/>
+                                </Shape.Fill>
+                                <Shape.Stroke>
+                                    <telerik:FluentResourceExtension ResourceKey="BasicBrush"/>
+                                </Shape.Stroke>
+                            </Rectangle>
+                            <Ellipse x:Name="PART_Thumb" Width="{TemplateBinding telerik:RadToggleSwitchButton.ThumbWidth}"
+                                Height="{TemplateBinding telerik:RadToggleSwitchButton.ThumbHeight}" HorizontalAlignment="Left"
+                                RenderTransformOrigin="0.5,0.5" Margin="4 0">
+                                <Shape.Fill>
+                                    <telerik:FluentResourceExtension ResourceKey="MarkerBrush"/>
+                                </Shape.Fill>
+                                <UIElement.RenderTransform>
+                                    <TranslateTransform X="0" Y="0"/>
+                                </UIElement.RenderTransform>
+                            </Ellipse>
+                        </Grid>
+                        <ContentPresenter x:Name="CheckedContent" Grid.Column="2" Margin="{TemplateBinding Control.Padding}"
+                              TextBlock.Foreground="{TemplateBinding Control.Foreground}"
+                              Content="{TemplateBinding telerik:RadToggleSwitchButton.CheckedContent}"
+                              ContentTemplate="{TemplateBinding telerik:RadToggleSwitchButton.CheckedContentTemplate}"
+                              VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                              ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                              HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                              RecognizesAccessKey="true"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="UIElement.IsKeyboardFocused" Value="true"/>
+                                <Condition Property="UIElement.IsEnabled" Value="true"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="TrackBackground" Property="Shape.Stroke">
+                                <Setter.Value>
+                                    <telerik:FluentResourceExtension ResourceKey="AccentFocusedBrush"/>
+                                </Setter.Value>
+                            </Setter>
+                        </MultiTrigger>
+                        <Trigger Property="UIElement.IsMouseOver" Value="true">
+                            <Setter TargetName="PART_Thumb" Property="Shape.Fill">
+                                <Setter.Value>
+                                    <telerik:FluentResourceExtension ResourceKey="AccentMouseOverBrush"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="ToggleButton.IsChecked" Value="False">
+                            <Setter TargetName="PART_Thumb" Property="Shape.Fill">
+                                <Setter.Value>
+                                    <telerik:FluentResourceExtension ResourceKey="IconBrush"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="ToggleButton.IsChecked" Value="True">
+                            <Setter TargetName="TrackBackground" Property="UIElement.Opacity" Value="1"/>
+                            <Setter TargetName="UncheckedTrackBackground" Property="UIElement.Opacity" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="ToggleButton.IsChecked">
+                            <Trigger.Value>
+                                <x:Null/>
+                            </Trigger.Value>
+                            <Setter TargetName="PART_Thumb" Property="Shape.Fill">
+                                <Setter.Value>
+                                    <telerik:FluentResourceExtension ResourceKey="IconBrush"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="TrackBackground" Property="UIElement.Opacity" Value="0"/>
+                            <Setter TargetName="UncheckedTrackBackground" Property="UIElement.Opacity" Value="1"/>
+                        </Trigger>
+                        <Trigger Property="ButtonBase.IsPressed" Value="true">
+                            <Setter TargetName="PART_Thumb" Property="Shape.Fill">
+                                <Setter.Value>
+                                    <telerik:FluentResourceExtension ResourceKey="AccentPressedBrush"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="TrackBackground" Property="Shape.Stroke">
+                                <Setter.Value>
+                                    <telerik:FluentResourceExtension ResourceKey="AccentBrush"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="UIElement.IsEnabled" Value="false">
+                            <Setter TargetName="CheckedContent" Property="UIElement.Opacity">
+                                <Setter.Value>
+                                    <telerik:FluentResourceExtension ResourceKey="DisabledOpacity"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="UncheckedContent" Property="UIElement.Opacity">
+                                <Setter.Value>
+                                    <telerik:FluentResourceExtension ResourceKey="DisabledOpacity"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="TrackBackground" Property="Shape.Stroke">
+                                <Setter.Value>
+                                    <telerik:FluentResourceExtension ResourceKey="BasicBrush"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="UncheckedTrackBackground" Property="Shape.Stroke">
+                                <Setter.Value>
+                                    <telerik:FluentResourceExtension ResourceKey="BasicBrush"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="UncheckedTrackBackground" Property="Shape.Fill">
+                                <Setter.Value>
+                                    <telerik:FluentResourceExtension ResourceKey="AlternativeBrush"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Value="True">
+                                    <Condition.Binding>
+                                        <Binding RelativeSource="{RelativeSource Self}" Path="IsChecked"/>
+                                    </Condition.Binding>
+                                </Condition>
+                                <Condition Value="True">
+                                    <Condition.Binding>
+                                        <MultiBinding Converter="{StaticResource MultiBindingBooleanOrConverter}" Mode="OneWay">
+                                            <Binding Path="ContentPosition" Mode="OneWay" Converter="{StaticResource EnumToBooleanConverter}"
+                               ConverterParameter="Left" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="ContentPosition" Mode="OneWay" Converter="{StaticResource EnumToBooleanConverter}"
+                               ConverterParameter="Right" RelativeSource="{RelativeSource Self}"/>
+                                        </MultiBinding>
+                                    </Condition.Binding>
+                                </Condition>
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="UncheckedContent" Property="UIElement.Visibility" Value="Hidden"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Value="False">
+                                    <Condition.Binding>
+                                        <Binding RelativeSource="{RelativeSource Self}" Path="IsChecked"/>
+                                    </Condition.Binding>
+                                </Condition>
+                                <Condition Value="True">
+                                    <Condition.Binding>
+                                        <MultiBinding Converter="{StaticResource MultiBindingBooleanOrConverter}" Mode="OneWay">
+                                            <Binding Path="ContentPosition" Mode="OneWay" Converter="{StaticResource EnumToBooleanConverter}"
+                               ConverterParameter="Left" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="ContentPosition" Mode="OneWay" Converter="{StaticResource EnumToBooleanConverter}"
+                               ConverterParameter="Right" RelativeSource="{RelativeSource Self}"/>
+                                        </MultiBinding>
+                                    </Condition.Binding>
+                                </Condition>
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="CheckedContent" Property="UIElement.Visibility" Value="Hidden"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition>
+                                    <Condition.Binding>
+                                        <Binding RelativeSource="{RelativeSource Self}" Path="IsChecked"/>
+                                    </Condition.Binding>
+                                    <Condition.Value>
+                                        <x:Null/>
+                                    </Condition.Value>
+                                </Condition>
+                                <Condition Value="True">
+                                    <Condition.Binding>
+                                        <MultiBinding Converter="{StaticResource MultiBindingBooleanOrConverter}" Mode="OneWay">
+                                            <Binding Path="ContentPosition" Mode="OneWay" Converter="{StaticResource EnumToBooleanConverter}"
+                               ConverterParameter="Left" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="ContentPosition" Mode="OneWay" Converter="{StaticResource EnumToBooleanConverter}"
+                               ConverterParameter="Right" RelativeSource="{RelativeSource Self}"/>
+                                        </MultiBinding>
+                                    </Condition.Binding>
+                                </Condition>
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="CheckedContent" Property="UIElement.Visibility" Value="Hidden"/>
+                            <Setter TargetName="UncheckedContent" Property="UIElement.Visibility" Value="Hidden"/>
+                        </MultiDataTrigger>
+                        <Trigger Property="telerik:RadToggleSwitchButton.ContentPosition" Value="Left">
+                            <Setter TargetName="CheckedContent" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="UncheckedContent" Property="Grid.Column" Value="0"/>
+                            <Setter Property="Control.HorizontalContentAlignment" Value="Right"/>
+                        </Trigger>
+                        <Trigger Property="telerik:RadToggleSwitchButton.ContentPosition" Value="Both">
+                            <Setter TargetName="UncheckedContent" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="CheckedContent" Property="Grid.Column" Value="2"/>
+                            <Setter TargetName="CheckedContent" Property="FrameworkElement.HorizontalAlignment" Value="Right"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    -->
+
+    <!--RadWatermarkTextBox-->
+    <!-- Telerik.Windows.Controls is needed to be added as assembly reference for this style-->
+    <!--
+    <Style x:Key="{x:Type telerik:RadWatermarkTextBox}" TargetType="{x:Type telerik:RadWatermarkTextBox}" BasedOn="{StaticResource RadWatermarkTextBoxStyle}">
+        <Setter Property="helpers:ThemeHelper.MouseOverBrush" Value="{telerik:FluentResource ResourceKey=AlternativeBrush}" />
+        <Setter Property="helpers:ThemeHelper.FocusBrush" Value="{telerik:FluentResource ResourceKey=AlternativeBrush}" />
+        <Setter Property="Background" Value="{telerik:FluentResource ResourceKey=AlternativeBrush}" />
+        <Setter Property="telerik:CaretBrushHelper.CaretBrush" Value="{telerik:FluentResource ResourceKey=MarkerBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:RadWatermarkTextBox}">
+                    <Grid Name="RootElement">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Border Name="BorderVisual" Grid.ColumnSpan="2" BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="{TemplateBinding Control.BorderThickness}" Background="{TemplateBinding Control.Background}" CornerRadius="{TemplateBinding helpers:ThemeHelper.CornerRadius}" />
+                        <Border Name="ReadOnlyVisual" Grid.ColumnSpan="2" Background="{TemplateBinding telerik:RadWatermarkTextBox.ReadOnlyBackground}" BorderThickness="{TemplateBinding Control.BorderThickness}" CornerRadius="{TemplateBinding helpers:ThemeHelper.CornerRadius}" IsHitTestVisible="False" Visibility="Collapsed" BorderBrush="{telerik:FluentResource ResourceKey=ReadOnlyBorderBrush}" />
+                        <Border Name="FocusVisual" Grid.ColumnSpan="2" BorderBrush="{TemplateBinding helpers:ThemeHelper.FocusBrush}" CornerRadius="{TemplateBinding helpers:ThemeHelper.CornerRadius}" IsHitTestVisible="False" Visibility="Collapsed" Background="{x:Null}" BorderThickness="{telerik:FluentResource ResourceKey=FocusThickness}" />
+                        <ScrollViewer Name="PART_ContentHost" Background="#00FFFFFF" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}" BorderThickness="0" IsTabStop="False" Margin="{TemplateBinding Control.BorderThickness}" Padding="{TemplateBinding Control.Padding}" helpers:ThemeHelper.CornerRadius="{TemplateBinding helpers:ThemeHelper.CornerRadius}" Opacity="{telerik:FluentResource ResourceKey=InputOpacity}" />
+                        <ContentControl Name="WatermarkVisualElement" IsTabStop="False" FontStyle="Italic" Content="{TemplateBinding telerik:RadWatermarkTextBox.WatermarkContent}" ContentTemplate="{TemplateBinding telerik:RadWatermarkTextBox.WatermarkTemplate}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" IsHitTestVisible="False" Padding="{TemplateBinding Control.Padding}" Foreground="{TemplateBinding Control.Foreground}" Visibility="Hidden" Opacity="{telerik:FluentResource ResourceKey=InputOpacity}">
+                            <ContentControl.Template>
+                                <ControlTemplate TargetType="{x:Type ContentControl}">
+                                    <ContentPresenter Margin="{TemplateBinding Control.Padding}" />
+                                </ControlTemplate>
+                            </ContentControl.Template>
+                        </ContentControl>
+                        <ContentPresenter Name="AdditionalContentHost" Grid.Column="1" Content="{TemplateBinding telerik:RadWatermarkTextBox.AdditionalContent}" ContentTemplate="{TemplateBinding telerik:RadWatermarkTextBox.AdditionalContentTemplate}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="UIElement.IsMouseOver" Value="True">
+                            <Setter Value="{telerik:FluentResource ResourceKey=MarkerBrush}" Property="Control.Foreground" />
+                            <Setter TargetName="PART_ContentHost" Property="UIElement.Opacity" Value="1" />
+                            <Setter TargetName="WatermarkVisualElement" Property="UIElement.Opacity" Value="0.5" />
+                            <Setter TargetName="BorderVisual" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mat:MaterialAssist.MouseOverBrush), Mode=OneWay}" Property="Border.Background" />
+                        </Trigger>
+                        <Trigger Property="TextBoxBase.IsReadOnly" Value="True">
+                            <Setter Value="{telerik:FluentResource ResourceKey=FocusThickness}" Property="Control.BorderThickness" />
+                            <Setter TargetName="PART_ContentHost" Value="{telerik:FluentResource ResourceKey=ReadOnlyOpacity}" Property="UIElement.Opacity" />
+                            <Setter TargetName="WatermarkVisualElement" Value="{telerik:FluentResource ResourceKey=ReadOnlyOpacity}" Property="UIElement.Opacity" />
+                            <Setter TargetName="ReadOnlyVisual" Property="UIElement.Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="UIElement.IsEnabled" Value="False">
+                            <Setter TargetName="BorderVisual" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisabledBackground}" Property="Border.Background" />
+                            <Setter TargetName="PART_ContentHost" Value="{telerik:FluentResource ResourceKey=DisabledOpacity}" Property="UIElement.Opacity" />
+                            <Setter TargetName="WatermarkVisualElement" Value="{telerik:FluentResource ResourceKey=DisabledOpacity}" Property="UIElement.Opacity" />
+                        </Trigger>
+                        <Trigger Property="telerik:RadWatermarkTextBox.IsWatermarkVisible" Value="True">
+                            <Setter TargetName="WatermarkVisualElement" Property="UIElement.Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="UIElement.IsKeyboardFocused" Value="True">
+                            <Setter Value="{telerik:FluentResource ResourceKey=MarkerBrush}" Property="Control.Foreground" />
+                            <Setter TargetName="BorderVisual" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mat:MaterialAssist.MouseOverBrush), Mode=OneWay}" Property="Border.Background" />
+                            <Setter TargetName="PART_ContentHost" Property="UIElement.Opacity" Value="1" />
+                        </Trigger>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter TargetName="FocusVisual" Property="UIElement.Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    -->
+
+    <!--RadNumericUpDown-->
+    <!-- Telerik.Windows.Controls.Input is needed to be added as assembly reference for this style-->
+    <!--
+    <ControlTemplate x:Key="RadNumericUpDownControlTemplateEx" TargetType="{x:Type telerik:RadNumericUpDown}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Name="Column" Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Border Name="BorderVisual" Background="{TemplateBinding Control.Background}" BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="{TemplateBinding Control.BorderThickness}" CornerRadius="{TemplateBinding helpers:ThemeHelper.CornerRadius}" />
+            <TextBox Name="textbox" IsReadOnly="{TemplateBinding telerik:RadNumericUpDown.IsReadOnly}" TabIndex="{TemplateBinding Control.TabIndex}" BorderThickness="0" Padding="{TemplateBinding Control.Padding}" Background="Transparent" Foreground="{TemplateBinding Control.Foreground}" FontSize="{TemplateBinding Control.FontSize}" FontFamily="{TemplateBinding Control.FontFamily}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}" Focusable="{TemplateBinding UIElement.Focusable}" TextAlignment="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=HorizontalContentAlignment, Converter={StaticResource HorizontalContentAlignmentToTextAlignmentConverter}}" CaretBrush="{telerik:FluentResource ResourceKey=MarkerBrush}" Opacity="{telerik:FluentResource ResourceKey=InputOpacity}">
+                <TextBox.Template>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <ScrollViewer Name="PART_ContentHost" Padding="{TemplateBinding Control.Padding}" BorderBrush="Transparent" Background="Transparent" BorderThickness="0" FontSize="{TemplateBinding Control.FontSize}" IsTabStop="False" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalContentAlignment="{TemplateBinding Control.HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <RepeatButton Name="increase" Grid.Column="2" IsTabStop="{TemplateBinding telerik:RadNumericUpDown.AreButtonsTabStops}" Style="{StaticResource IncreaseRepeatButtonStyle}" BorderBrush="{TemplateBinding Control.BorderBrush}" helpers:ThemeHelper.CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mat:MaterialAssist.CornerRadius), Converter={StaticResource CornerRadiusConverter}, ConverterParameter=TopBottomRight}" BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness}" />
+            <RepeatButton Name="decrease" Grid.Column="1" IsTabStop="{TemplateBinding telerik:RadNumericUpDown.AreButtonsTabStops}" Style="{StaticResource DecreaseRepeatButtonStyle}" helpers:ThemeHelper.CornerRadius="0" BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={StaticResource ThicknessToOrientedThicknessConverter}, ConverterParameter=LeftTopBottom}" />
+            <Border Name="ReadOnlyVisual" Grid.ColumnSpan="3" CornerRadius="{TemplateBinding helpers:ThemeHelper.CornerRadius}" IsHitTestVisible="False" Visibility="Collapsed" Background="{telerik:FluentResource ResourceKey=ReadOnlyBackgroundBrush}" BorderBrush="{telerik:FluentResource ResourceKey=ReadOnlyBorderBrush}" BorderThickness="{telerik:FluentResource ResourceKey=FocusThickness}" />
+            <Border Name="FocusVisual" Grid.ColumnSpan="3" BorderBrush="{TemplateBinding helpers:ThemeHelper.FocusBrush}" CornerRadius="{TemplateBinding helpers:ThemeHelper.CornerRadius}" IsHitTestVisible="False" Visibility="Collapsed" Background="{x:Null}" BorderThickness="{telerik:FluentResource ResourceKey=FocusThickness}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="UIElement.IsMouseOver" Value="True" />
+                    <Condition Property="telerik:RadNumericUpDown.ShowTextBox" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="textbox" Property="UIElement.Opacity" Value="1" />                
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="telerik:RadNumericUpDown.IsReadOnly" Value="True" />
+                    <Condition Property="telerik:RadNumericUpDown.ShowTextBox" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Control.BorderBrush" Value="#00FFFFFF" />
+                <Setter TargetName="textbox" Value="{telerik:FluentResource ResourceKey=ReadOnlyOpacity}" Property="UIElement.Opacity" />
+                <Setter TargetName="ReadOnlyVisual" Property="UIElement.Visibility" Value="Visible" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="telerik:RadNumericUpDown.IsReadOnly" Value="True" />
+                    <Condition Property="telerik:RadNumericUpDown.ShowButtons" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="decrease" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={StaticResource ThicknessToOrientedThicknessConverter}, ConverterParameter=Left}" Property="Control.BorderThickness" />
+                <Setter TargetName="increase" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={StaticResource ThicknessToOrientedThicknessConverter}, ConverterParameter=Left}" Property="Control.BorderThickness" />
+                <Setter TargetName="decrease" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderBrush}" Property="Control.BorderBrush" />
+                <Setter TargetName="increase" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderBrush}" Property="Control.BorderBrush" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="telerik:RadNumericUpDown.ShowTextBox" Value="True" />
+                    <Condition Property="telerik:RadNumericUpDown.ShowButtons" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="BorderVisual" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mat:MaterialAssist.CornerRadius), Converter={StaticResource CornerRadiusConverter}, ConverterParameter=LeftTopBottom}" Property="Border.CornerRadius" />
+                <Setter TargetName="BorderVisual" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={StaticResource ThicknessToOrientedThicknessConverter}, ConverterParameter=LeftTopBottom}" Property="Border.BorderThickness" />
+            </MultiTrigger>
+            <Trigger Property="telerik:RadNumericUpDown.ShowTextBox" Value="False">
+                <Setter TargetName="textbox" Property="UIElement.Visibility" Value="Collapsed" />
+                <Setter TargetName="decrease" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mat:MaterialAssist.CornerRadius), Converter={StaticResource CornerRadiusConverter}, ConverterParameter=LeftTopBottom}" Property="helpers:ThemeHelper.CornerRadius" />
+                <Setter TargetName="BorderVisual" Property="UIElement.Visibility" Value="Collapsed" />
+                <Setter TargetName="Column" Property="ColumnDefinition.Width" Value="0" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="telerik:RadNumericUpDown.ShowTextBox" Value="False" />
+                    <Condition Property="telerik:RadNumericUpDown.IsReadOnly" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="BorderVisual" Property="UIElement.Visibility" Value="Collapsed" />
+                <Setter TargetName="decrease" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={StaticResource ThicknessToOrientedThicknessConverter}, ConverterParameter=LeftTopBottom}" Property="Control.BorderThickness" />
+                <Setter TargetName="increase" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={StaticResource ThicknessToOrientedThicknessConverter}, ConverterParameter=LeftTopRightBottom}" Property="Control.BorderThickness" />
+                <Setter TargetName="decrease" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderBrush}" Property="Control.BorderBrush" />
+                <Setter TargetName="increase" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderBrush}" Property="Control.BorderBrush" />
+            </MultiTrigger>
+            <Trigger Property="telerik:RadNumericUpDown.ShowButtons" Value="False">
+                <Setter TargetName="increase" Property="UIElement.Visibility" Value="Collapsed" />
+                <Setter TargetName="decrease" Property="UIElement.Visibility" Value="Collapsed" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="UIElement.IsKeyboardFocusWithin" Value="True" />
+                    <Condition Property="telerik:RadNumericUpDown.ShowTextBox" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="textbox" Property="UIElement.Opacity" Value="1" />
+                <Setter TargetName="FocusVisual" Property="UIElement.Visibility" Value="Visible" />
+            </MultiTrigger>
+            <Trigger Property="UIElement.IsEnabled" Value="False">
+                <Setter TargetName="textbox" Value="{telerik:FluentResource ResourceKey=DisabledOpacity}" Property="UIElement.Opacity" />
+                <Setter TargetName="BorderVisual" Value="{telerik:FluentResource ResourceKey=PrimaryBrush}" Property="Border.Background" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="{x:Type telerik:RadNumericUpDown}" TargetType="{x:Type telerik:RadNumericUpDown}" BasedOn="{StaticResource RadNumericUpDownStyle}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template" Value="{StaticResource RadNumericUpDownControlTemplateEx}"/>
+    </Style>
+    -->
+
+    <!-- RadRibbonButton-->
+    <!-- Telerik.Windows.Controls.RibbonView is needed to be added as assembly reference for this style-->
+    <!--
+    <Style x:Key="RadRibbonButtonStyle" TargetType="{x:Type telerik:RadRibbonButton}" BasedOn="{StaticResource RadRibbonButtonStyle}">
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="Size" Value="Small" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="MinWidth" Value="32" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="ToolTip" Value="{Binding Path=Text, RelativeSource={RelativeSource Self}}"/>
+    </Style>
+    -->
+
+    <!-- RadAlert-->
+    <!-- Telerik.Windows.Controls.Navigation is needed to be added as assembly reference for this style-->
+    <!--
+    <Style x:Key="{x:Type telerik:RadAlert}" TargetType="{x:Type telerik:RadAlert}" BasedOn="{StaticResource RadAlertStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="telerik:RadAlert">
+                    <Grid x:Name="LayoutRoot" Background="{TemplateBinding Background}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.InputBindings>
+                            <KeyBinding Key="Escape" Command="{x:Static telerik:WindowCommands.Confirm}"/>
+                        </Grid.InputBindings>
+                        <ContentPresenter x:Name="Icon" VerticalAlignment="Top" Margin="10 12 10 10" ContentTemplate="{TemplateBinding IconTemplate}"/>
+                        <ScrollViewer IsTabStop="False" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0 10" BorderBrush="{x:Null}" >
+                            <ContentPresenter x:Name="AlertText" Margin="0 0 10 0" />
+                        </ScrollViewer>
+                        <telerik:RadButton x:Name="OK"
+                                Command="{x:Static telerik:WindowCommands.Confirm}"
+                                telerik:RadWindow.ResponseButton="Accept"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                MinWidth="74"
+                                HorizontalAlignment="Right"
+                                telerik:LocalizationManager.ResourceKey="Ok"
+                                Margin="0 8 5 8"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    -->
+    
+</ResourceDictionary>

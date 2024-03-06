@@ -1,0 +1,85 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>FilterWheel</AssemblyName>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <Configurations>Debug;Release</Configurations>
+    <OutputPath>$(SolutionDir)Output</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <ApplicationIcon>Resources\TIC.ico</ApplicationIcon>
+    <BaseOutputPath>$(SolutionDir)Output</BaseOutputPath>
+    <Platforms>x64;x86</Platforms>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
+	<Version>$(AssemblyVersion)</Version>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism" Version="8.1.97" />
+    <PackageReference Include="ThorLog" Version="1.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+	  <Resource Include="Resources\TIC.ico">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\device.png" />	  
+ </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Telerik.Windows.Controls.Data.for.Wpf" Version="2021.1.325" />
+    <PackageReference Include="Telerik.Windows.Controls.RibbonView.for.Wpf" Version="2021.1.325" />
+    <PackageReference Include="Telerik.Windows.Themes.Fluent.for.Wpf" Version="2021.1.325" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Controls\CameraControl\CameraControl.csproj" />
+    <ProjectReference Include="..\..\Controls\Settings\Settings.csproj" />
+    <ProjectReference Include="..\..\Controls\Viewport\Viewport.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="LogConfig.conf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="Xcopy /Y &quot;$(SolutionDir)GUI\LocalizationFiles\*.language&quot; &quot;$(TargetDir)Localization\&quot;" />
+  </Target>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="If Not Exist &quot;$(TargetDir)ComputeColor\&quot; (md &quot;$(TargetDir)ComputeColor\&quot;)&#xD;&#xA;Xcopy /y &quot;$(SolutionDir)GUI\Tools\ComputeColor\*.*&quot; &quot;$(TargetDir)ComputeColor\&quot;&#xD;&#xA;If Exist &quot;$(SolutionDir)HardwareOutput\&quot; (Xcopy /y &quot;$(SolutionDir)HardwareOutput\*.dll&quot; &quot;$(TargetDir)&quot;)&#xD;&#xA;" />
+  </Target>
+</Project>

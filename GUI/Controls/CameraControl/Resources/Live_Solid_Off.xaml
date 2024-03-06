@@ -1,0 +1,15 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Geometry x:Key="Live_SolidGeometry1">F1 M64,64z M0,0z M20.279,26.094C23.742,26.094 26.559,23.277 26.559,19.817 26.559,16.353 23.742,13.537 20.279,13.537 16.817,13.537 14,16.353 14,19.817 14,23.276 16.817,26.094 20.279,26.094z</Geometry>
+  <Geometry x:Key="Live_SolidGeometry2">F1 M64,64z M0,0z M39.645,26.094C43.781,26.094 47.145,22.73 47.145,18.594 47.145,14.459 43.781,11.094 39.645,11.094 35.51,11.094 32.145,14.459 32.145,18.594 32.145,22.729 35.51,26.094 39.645,26.094z</Geometry>
+  <Geometry x:Key="Live_SolidGeometry3">F1 M64,64z M0,0z M54.5,28.906L51.521,28.906C51.179,28.906,50.845,29.023,50.579,29.239L45.5,33.337 45.5,30.406C45.5,29.576,44.83,28.906,44,28.906L15.501,28.906C14.671,28.906,14.001,29.576,14.001,30.406L14.001,51.406C14.001,52.234,14.671,52.906,15.501,52.906L44,52.906C44.83,52.906,45.5,52.234,45.5,51.406L45.5,48.51 50.585,52.576C50.851,52.789,51.182,52.905,51.522,52.905L54.5,52.905C55.33,52.905,56,52.234,56,51.405L56,30.405C56,29.576,55.33,28.906,54.5,28.906z</Geometry>
+  <Geometry x:Key="Live_SolidGeometry4">F1 M64,64z M0,0z M9.5,31.612C8.625,31.612,8,32.362,8,33.112L8,38.487C8,39.236 8.625,39.987 9.5,39.987 10.375,39.987 11,39.362 11,38.487L11,33.112C11,32.238,10.375,31.612,9.5,31.612z</Geometry>
+  <DrawingGroup x:Key="Live_Solid_OffDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+    <DrawingGroup Opacity="1">
+      <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Live_SolidGeometry1}" />
+      <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Live_SolidGeometry2}" />
+      <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Live_SolidGeometry3}" />
+      <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Live_SolidGeometry4}" />
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="Live_SolidDrawingImage_Off" Drawing="{StaticResource Live_Solid_OffDrawingGroup}" />
+</ResourceDictionary>

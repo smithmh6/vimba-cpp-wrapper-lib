@@ -1,0 +1,11 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Geometry x:Key="Chart_Line_OutlineGeometry1">F1 M64,64z M0,0z M15.328,41.958C16.5,41.958 17.456,41.001 17.456,39.829 17.456,39.572 17.403,39.329 17.319,39.1L23.332,31.421C23.346,31.421 23.358,31.425 23.372,31.425 23.492,31.425 23.607,31.409 23.721,31.389L29.213,36.598C29.251,37.737 30.186,38.657 31.334,38.657 32.123,38.657 32.808,38.218 33.175,37.575L38.388,35.596C38.69,35.76 39.03,35.862 39.396,35.862 40.566,35.862 41.523,34.907 41.523,33.735 41.523,33.657 41.508,33.584 41.5,33.508L48.428,26.273C48.51,26.283 48.59,26.298 48.674,26.298 49.846,26.298 50.801,25.343 50.801,24.17 50.801,22.998 49.846,22.042 48.674,22.042 47.501,22.042 46.545,22.998 46.545,24.17 46.545,24.287 46.562,24.399 46.579,24.51L39.753,31.642C39.637,31.622 39.519,31.606 39.397,31.606 38.385,31.606 37.538,32.319 37.323,33.269L32.792,34.987C32.411,34.627 31.9,34.401 31.336,34.401 31.119,34.401 30.914,34.443 30.717,34.504L25.478,29.533C25.487,29.455 25.502,29.378 25.502,29.298 25.502,28.126 24.546,27.17 23.374,27.17 22.202,27.17 21.246,28.126 21.246,29.298 21.246,29.487 21.279,29.668 21.326,29.842L15.161,37.718C14.069,37.806 13.203,38.715 13.203,39.829 13.2,41.001 14.156,41.958 15.328,41.958z</Geometry>
+  <Geometry x:Key="Chart_Line_OutlineGeometry2">F1 M64,64z M0,0z M48.5,53L48.5,53 45.5,53 45,53 19,53 18.5,53 15.5,53 11,53 11,8 8,8 8,56 56,56 56,53z</Geometry>
+  <DrawingGroup x:Key="Chart_Line_OutlineDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+    <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Chart_Line_OutlineGeometry1}" />
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Chart_Line_OutlineGeometry2}" />
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="Chart_Line_OutlineDrawingImage" Drawing="{StaticResource Chart_Line_OutlineDrawingGroup}" />
+</ResourceDictionary>

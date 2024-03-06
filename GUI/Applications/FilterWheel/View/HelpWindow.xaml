@@ -1,0 +1,109 @@
+﻿<telerik:RadWindow x:Class="FilterWheel.View.HelpWindow"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                   xmlns:navigation="clr-namespace:Telerik.Windows.Controls.Navigation;assembly=Telerik.Windows.Controls.Navigation"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:prism="http://prismlibrary.com/"
+                   prism:ViewModelLocator.AutoWireViewModel="True"
+                   xmlns:localization="clr-namespace:FilterWheel.Localization"
+                   xmlns:local="clr-namespace:FilterWheel.View"
+                   xmlns:viewmodel="clr-namespace:FilterWheel.ViewModel"
+                   mc:Ignorable="d" WindowStartupLocation="CenterOwner" navigation:RadWindowInteropHelper.ShowInTaskbar="False"
+                   HeaderedContentControl.Header="{localization:LocalString Kind=About}" 
+                   Height="330" Width="540" ResizeMode="NoResize" 
+                   Style="{DynamicResource RadWindowStyle}">
+    <telerik:RadWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Thorlabs_Logo.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </telerik:RadWindow.Resources>
+    <Border Margin="8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="{DynamicResource Thorlabs_LogoDrawingImage}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="14"/>
+                    <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding ProductLongDisplayName, Mode=OneWay}" TextWrapping="Wrap" FontSize="14" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding AdditionalInfo, Mode=OneWay}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,5">
+                        <TextBlock Text="{localization:LocalString Kind=Version}"/>
+                        <TextBlock Text="{Binding CurrentVersion, Mode=OneWay}" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+                <TextBlock x:Name="CopyRightTB" Grid.Row="1"/>
+                <Image Grid.Column="2" Source="pack://application:,,,/Resources/device.png" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right">
+                            <Hyperlink NavigateUri="{Binding ProductInfoUrl, Mode=OneWay}" RequestNavigate="Hyperlink_RequestNavigate">
+                                <Run Text="{localization:LocalString Kind=ViewDetailInfo}"/>
+                            </Hyperlink>
+                </TextBlock>
+            </Grid>
+            <Border Grid.Row="1" Margin="0"  BorderThickness="1">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <!--<RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>-->
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!--<TextBlock Text="{localization:LocalString Kind=Manual}" Margin="4,0" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="4,0" >
+                            <Hyperlink NavigateUri="Manual" RequestNavigate="Hyperlink_OpenFolder">
+                                <Run Text="{localization:LocalString Kind=SeeTheManual}"/>
+                            </Hyperlink>
+                    </TextBlock>
+                    <TextBlock Grid.Row="1" Text="SDK" Margin="4,0" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="4,0" >
+                            <Hyperlink NavigateUri="CPPSDK" RequestNavigate="Hyperlink_OpenFolder">
+                                <Run Text="{localization:LocalString Kind=ViewCPPSDK}"/>
+                            </Hyperlink>
+                    </TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="4,0" >
+                            <Hyperlink NavigateUri="LabViewSDK" RequestNavigate="Hyperlink_OpenFolder">
+                                <Run Text="{localization:LocalString Kind=ViewLabViewSDK}"/>
+                            </Hyperlink>
+                    </TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="4,0" >
+                            <Hyperlink NavigateUri="PythonSDK" RequestNavigate="Hyperlink_OpenFolder">
+                                <Run Text="{localization:LocalString Kind=ViewPythonSDK}"/>
+                            </Hyperlink>
+                    </TextBlock>-->
+                    <TextBlock Grid.Row="4" Text="{localization:LocalString Kind=License}" Margin="4,0" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="4,0" >
+                            <Hyperlink NavigateUri="License" RequestNavigate="Hyperlink_OpenFolder">
+                                <Run Text="{localization:LocalString Kind=ViewLicense}"/>
+                            </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</telerik:RadWindow>

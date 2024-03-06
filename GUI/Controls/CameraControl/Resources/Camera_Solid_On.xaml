@@ -1,0 +1,11 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Geometry x:Key="Camera_SolidGeometry1">F1 M64,64z M0,0z M53.094,18.378L45.084,18.378 41.773,13.476C41.254,12.563,40.299,12,39.256,12L25.018,12C23.921,12,22.911,12.637,22.42,13.63L19.663,18.378 10.906,18.378C9.304,18.378,8,19.706,8,21.336L8,49.042C8,50.673,9.304,52,10.906,52L53.094,52C54.695,52,56,50.673,56,49.042L56,21.336C56,19.706,54.695,18.378,53.094,18.378z M32.001,45.145C25.745,45.145 20.657,39.948 20.657,33.561 20.657,27.174 25.746,21.978 32.001,21.978 38.256,21.978 43.344,27.174 43.344,33.561 43.344,39.948 38.256,45.145 32.001,45.145z M47.777,31.102C45.786,31.102 44.168,29.446 44.168,27.412 44.168,25.377 45.786,23.721 47.777,23.721 49.767,23.721 51.384,25.377 51.384,27.412 51.385,29.445 49.768,31.102 47.777,31.102z</Geometry>
+  <Geometry x:Key="Camera_SolidGeometry2">F1 M64,64z M0,0z M32.001,25.055C27.4,25.055 23.658,28.87 23.658,33.56 23.658,38.251 27.4,42.068 32.001,42.068 36.602,42.068 40.344,38.252 40.344,33.56 40.344,28.87 36.602,25.055 32.001,25.055z M32.001,39.404C28.847,39.404 26.281,36.782 26.281,33.56 26.281,30.339 28.848,27.717 32.001,27.717 35.154,27.717 37.721,30.338 37.721,33.56 37.721,36.783 35.154,39.404 32.001,39.404z</Geometry>
+  <DrawingGroup x:Key="Camera_Solid_OnDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+    <DrawingGroup Opacity="1">
+      <GeometryDrawing Brush="#FF0086AF" Geometry="{StaticResource Camera_SolidGeometry1}" />
+      <GeometryDrawing Brush="#FF0086AF" Geometry="{StaticResource Camera_SolidGeometry2}" />
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="Camera_SolidDrawingImage_On" Drawing="{StaticResource Camera_Solid_OnDrawingGroup}" />
+</ResourceDictionary>

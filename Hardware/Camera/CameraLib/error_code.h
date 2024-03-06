@@ -1,0 +1,29 @@
+#pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+    enum ErrorCode
+    {
+        ERR_CAMSYS_MALLOCBUFFER = -101,
+
+        ERR_CAMSYS_MANUFACTURE = -201,
+        ERR_CAMSYS_BITDEPTH_NOT_SUPPORT = -205,
+        ERR_CAMSYS_COLORMODE_NOT_SUPPORT = -206,
+        ERR_CAMSYS_SWTRIGGER_FAILED = -207,
+        ERR_CAMSYS_CREATE_P2D_FAILED = -208,
+        ERR_CAMSYS_INIT_P2D_FAILED = -209,
+        ERR_CAMSYS_P2D_OPERATE_FAILED = -210,
+        ERR_CAMSYS_P2D_GETINFO_FAILED = -211,
+        ERR_CAMSYS_P2D_SETTAG_FAILED = -212,
+
+        ERR_CREATE_JPEG_FILE_FALIED = -501,
+        ERR_INIT_TURBOJPEG_COMPRESS_FAILED = -502,
+        ERR_TIFF_HANDLE_NOT_VALID = -503,
+        ERR_JPEG_FILE_NOT_VALID = -504,
+        ERR_INIT_TURBOJPEG_DECOMPRESS_FAILED = -505,
+    };
+
+#ifdef __cplusplus
+}
+#endif

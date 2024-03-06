@@ -1,0 +1,13 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Geometry x:Key="Capture_Start_SolidGeometry1">F1 M64,64z M0,0z M20.505,33.561C20.505,27.174 25.594,21.978 31.849,21.978 38.103,21.978 43.191,27.174 43.191,33.561 43.191,36.075 42.396,38.395 41.06,40.295L55.847,47.682 55.847,21.335C55.847,19.705,54.542,18.377,52.941,18.377L44.931,18.377 41.62,13.475C41.102,12.563,40.146,12,39.104,12L24.865,12C23.768,12,22.759,12.637,22.267,13.63L19.51,18.378 10.753,18.378C9.151,18.378,7.847,19.706,7.847,21.336L7.847,49.042C7.847,50.673,9.151,52.001,10.753,52.001L38.868,52.001 38.868,42.644C36.933,44.207 34.499,45.146 31.847,45.146 25.593,45.145 20.505,39.947 20.505,33.561z M47.625,23.719C49.615,23.719 51.232,25.375 51.232,27.41 51.232,29.444 49.615,31.1 47.625,31.1 45.634,31.1 44.016,29.444 44.016,27.41 44.016,25.375 45.634,23.719 47.625,23.719z</Geometry>
+    <Geometry x:Key="Capture_Start_SolidGeometry2">F1 M64,64z M0,0z M31.849,25.055C27.248,25.055 23.506,28.87 23.506,33.56 23.506,38.25 27.248,42.069 31.849,42.069 36.45,42.069 40.191,38.253 40.191,33.56 40.191,28.87 36.449,25.055 31.849,25.055z M31.849,39.404C28.696,39.404 26.129,36.781 26.129,33.559 26.129,30.338 28.695,27.716 31.849,27.716 35.003,27.716 37.568,30.337 37.568,33.559 37.568,36.783 35.002,39.404 31.849,39.404z</Geometry>
+    <Geometry x:Key="Capture_Start_SolidGeometry3">F1 M64,64z M0,0z M55.171,48.857L42.306,42.425C41.931,42.26 41.546,42 41.163,42 40.548,42 40.018,42.518 40.018,43.143L40.018,43.338 40.018,54.211 40.018,56.857C40.018,57.482 40.54,58 41.163,58 41.548,58 41.933,57.74 42.308,57.57L49.034,54.211 55.176,51.145C55.385,51.041 55.686,50.86 55.864,50.553 55.919,50.317 55.96,50.067 55.983,49.795 55.88,49.268 55.448,48.992 55.171,48.857z</Geometry>
+    <DrawingGroup x:Key="Capture_Start_SolidDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+        <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Capture_Start_SolidGeometry1}" />
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Capture_Start_SolidGeometry2}" />
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Capture_Start_SolidGeometry3}" />
+        </DrawingGroup>
+    </DrawingGroup>
+    <DrawingImage x:Key="Capture_Start_SolidDrawingImage" Drawing="{StaticResource Capture_Start_SolidDrawingGroup}" />
+</ResourceDictionary>

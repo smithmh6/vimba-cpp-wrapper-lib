@@ -1,0 +1,11 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Geometry x:Key="Flip_VerticalGeometry1">F1 M64,64z M0,0z M51.267,8.149L11.194,26.845C10.53,27.153 10.104,27.818 10.103,28.551 10.1,29.592 10.942,30.437 11.983,30.44L52.055,30.44C53.071,30.435,53.891,29.612,53.896,28.599L53.896,9.921C53.878,9.283,53.552,8.694,53.02,8.344L53.02,8.325C52.507,7.967,51.842,7.899,51.267,8.149z M50.126,26.653L20.313,26.653 50.126,12.798 50.126,26.653z</Geometry>
+    <Geometry x:Key="Flip_VerticalGeometry2">F1 M64,64z M0,0z M10.262,34.729C9.852,35.654,10.27,36.737,11.195,37.147L51.267,55.807C51.825,56.092 52.494,56.059 53.021,55.718 53.553,55.367 53.879,54.778 53.897,54.14L53.897,35.48C53.892,34.466,53.072,33.645,52.056,33.639L11.983,33.639C11.242,33.621,10.563,34.051,10.262,34.729z</Geometry>
+    <DrawingGroup x:Key="Flip_VerticalDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+        <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Flip_VerticalGeometry1}" />
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Flip_VerticalGeometry2}" />
+        </DrawingGroup>
+    </DrawingGroup>
+    <DrawingImage x:Key="Flip_VerticalDrawingImage" Drawing="{StaticResource Flip_VerticalDrawingGroup}" />
+</ResourceDictionary>

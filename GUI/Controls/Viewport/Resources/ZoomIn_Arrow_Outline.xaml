@@ -1,0 +1,9 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Geometry x:Key="ZoomIn_Arrow_OutlineGeometry">F1 M64,64z M0,0z M25.379,36.498L27.5,38.619 13.122,53 23,53 23,56 8,56 8,41 11,41 11,50.88 25.379,36.498z M38.621,36.498L53,50.881 53,41 56,41 56,56 41,56 41,53 50.878,53 36.5,38.619 38.621,36.498z M41,8L56,8 56,23 53,23 53,13.12 38.621,27.501 36.5,25.38 50.878,11 41,11 41,8z M8,8L23,8 23,11 13.122,11 27.5,25.38 25.379,27.501 11,13.12 11,23 8,23 8,8z</Geometry>
+    <DrawingGroup x:Key="ZoomIn_Arrow_OutlineDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+        <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource ZoomIn_Arrow_OutlineGeometry}" />
+        </DrawingGroup>
+    </DrawingGroup>
+    <DrawingImage x:Key="ZoomIn_Arrow_OutlineDrawingImage" Drawing="{StaticResource ZoomIn_Arrow_OutlineDrawingGroup}" />
+</ResourceDictionary>

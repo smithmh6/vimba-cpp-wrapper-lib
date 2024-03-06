@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <BaseOutputPath>$(SolutionDir)Output</BaseOutputPath>
+    <Configurations>Debug;Release</Configurations>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Platforms>x64;x86</Platforms>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="DrawingTool" Version="1.1.0" />
+    <PackageReference Include="Telerik.Windows.Controls.Chart.for.Wpf" Version="2021.1.325" />
+    <PackageReference Include="Telerik.Windows.Controls.for.Wpf" Version="2021.1.325" />
+    <PackageReference Include="Telerik.Windows.Controls.GridView.for.Wpf" Version="2021.1.325" />
+    <PackageReference Include="Telerik.Windows.Controls.RibbonView.for.Wpf" Version="2021.1.325" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PluginCommon\PluginCommon.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Thorlabs.CustomControls.TelerikAndSciChart">
+      <HintPath>..\..\Tools\Thorlabs.CustomControls.TelerikAndSciChart.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\RulerConfigurationSettings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RulerConfigurationSettings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\RulerConfigurationSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>RulerConfigurationSettings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+</Project>

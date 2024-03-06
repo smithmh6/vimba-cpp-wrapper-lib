@@ -1,0 +1,179 @@
+﻿<telerik:RadWindow x:Class="Viewport.RulerConfigurationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Viewport"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:localization="clr-namespace:PluginCommon.Localization;assembly=PluginCommon"
+        xmlns:converter="clr-namespace:Viewport.Converter"
+        xmlns:controlHelper="clr-namespace:Viewport.Infrastructure"
+        mc:Ignorable="d"
+        Header="{localization:LocalString Kind=RulerConfiguration}" Width="332" Style="{StaticResource RadWindowStyle}" ResizeMode="NoResize">
+    <Grid Margin="12,0,0,0">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <telerik:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+                <telerik:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
+                <telerik:BooleanToVisibilityConverter x:Key="BoolToVisibilityC"/>
+                <telerik:InvertedBooleanToVisibilityConverter x:Key="InvertBoolToVisibilityC"/>
+                <converter:FontFamilyToLocalizedFamilyNameConverter x:Key="FontFamilyToLocalizedFamilyNameConverter"/>
+                <converter:RelativePlacementEnumToDisplayRelativePlacementConverter x:Key="RelativePlacementEnumToDisplayRelativePlacementConverter"/>
+                <Style x:Key="SpilitButtonStyleForColorPicker" TargetType="{x:Type telerik:RadSplitButton}" BasedOn="{StaticResource {x:Type telerik:RadSplitButton}}">
+                    <Setter Property="Control.Padding" Value="0" />
+                </Style>
+                <Style x:Key="FilledColorPicker" TargetType="{x:Type telerik:RadColorPicker}" BasedOn="{StaticResource {x:Type telerik:RadColorPicker}}">
+                    <Setter Property="SplitButtonStyle" Value="{StaticResource SpilitButtonStyleForColorPicker}" />
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Rectangle Width="28" Height="24" Fill="{Binding Converter={StaticResource ColorToBrushConverter}}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style TargetType="{x:Type telerik:RadRibbonToggleButton}" BasedOn="{StaticResource CustomRadRibbonToggleButtonStyle}">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="IsHitTestVisible" Value="False"/>
+                            <Setter Property="Foreground" Value="{telerik:FluentResource ResourceKey=AccentBrush}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{localization:LocalString Kind=Font}" Width="25" VerticalAlignment="Center"/>
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="8,2">
+            <telerik:RadComboBox Width="120" IsEditable="True" Margin="0,0,8,0"
+                                 ItemsSource="{Binding FontFamilyList}"
+                                 SelectedItem="{Binding SelectedFontFamily}">
+                <telerik:RadComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontFamily="{Binding}" Text="{Binding Converter={StaticResource FontFamilyToLocalizedFamilyNameConverter}}" 
+                                   ToolTip="{Binding Converter={StaticResource FontFamilyToLocalizedFamilyNameConverter}}"/>
+                    </DataTemplate>
+                </telerik:RadComboBox.ItemTemplate>
+            </telerik:RadComboBox>
+            <telerik:RadComboBox Width="64" IsEditable="True" Margin="8,0"
+                                 ItemsSource="{Binding FontSizeList}"
+                                 SelectedItem="{Binding SelectedFontSize}"/>
+        </StackPanel>
+        <telerik:RadColorPicker Grid.Row="0" Grid.Column="4" Width="60" Margin="0,2,2,2"
+                                SelectedColor="{Binding FontColor, Mode=TwoWay}" NoColorVisibility="Collapsed" 
+                                MainPaletteHeaderText="{localization:LocalString Kind=MainPaletteHeaderText}" 
+                                StandardPaletteHeaderText="{localization:LocalString Kind=StandardPaletteHeaderText}"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{localization:LocalString Kind=LineWidth}" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="4,2,0,2">
+            <telerik:RadNumericUpDown x:Name="LineWidthNumeric" Width="100" NumberDecimalDigits="0"
+                                  Value="{Binding LineWidth}" SmallChange="1" Minimum="1" Maximum="5"/>
+            <TextBlock Text="{localization:LocalString Kind=Color}" VerticalAlignment="Center" Width="32" Margin="8,0,0,0"/>
+        </StackPanel>
+        <telerik:RadColorPicker Width="60" Padding="0" Grid.Row="1" Grid.Column="4" Margin="0,2,2,2"
+                                Style="{StaticResource FilledColorPicker}"
+                                SelectedColor="{Binding LineColor, Mode=TwoWay}" NoColorVisibility="Collapsed"
+                                MainPaletteHeaderText="{localization:LocalString Kind=MainPaletteHeaderText}" 
+                                StandardPaletteHeaderText="{localization:LocalString Kind=StandardPaletteHeaderText}">
+        </telerik:RadColorPicker>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{localization:LocalString Kind=PanelOpacity}" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="4,2,0,2">
+            <telerik:RadNumericUpDown x:Name="OpacityNumeric" Width="100" NumberDecimalDigits="0"
+                                  Value="{Binding PanelOpacity}" SmallChange="1" Minimum="0" Maximum="100" />
+            <TextBlock Text="{localization:LocalString Kind=Color}" VerticalAlignment="Center" Width="32" Margin="8,0,0,0"/>
+        </StackPanel>
+        <telerik:RadColorPicker Width="60" Padding="0" Grid.Row="2" Grid.Column="4" Margin="0,2,2,2"
+                                Style="{StaticResource FilledColorPicker}"
+                                SelectedColor="{Binding PanelColor, Mode=TwoWay}" NoColorVisibility="Collapsed"
+                                MainPaletteHeaderText="{localization:LocalString Kind=MainPaletteHeaderText}" 
+                                StandardPaletteHeaderText="{localization:LocalString Kind=StandardPaletteHeaderText}"/>
+
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,2,0,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                <TextBlock Text="{localization:LocalString Kind=Placement}" MinWidth="56" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                <Grid>
+                    <telerik:RadRibbonToggleButton x:Name="ButtomLeft" Width="32" Height="32" Padding="0" ToolTip="{localization:LocalString Kind=BottomLeft}"
+                                           controlHelper:RibbonButtonHelper.SmallImageSize="32" 
+                                           IsChecked="{Binding ScalerPlacement, Converter={StaticResource EnumToBooleanConverter},ConverterParameter=2}"
+                                           controlHelper:RibbonButtonHelper.AttachedSmallImage="{DynamicResource CornerPos_OutlineDrawingImage}">
+                        <telerik:RadRibbonToggleButton.Resources>
+                            <ResourceDictionary Source="./Resources/CornerPos_Outline.xaml"/>
+                        </telerik:RadRibbonToggleButton.Resources>
+                    </telerik:RadRibbonToggleButton>
+                    <Label ToolTip="{localization:LocalString Kind=BottomLeft}" 
+                       Visibility="{Binding ElementName=ButtomLeft, Path=IsChecked, Converter={StaticResource BoolToVisibilityC}}"/>
+                </Grid>
+                <Grid>
+
+                    <telerik:RadRibbonToggleButton x:Name="TopLeft" Width="32" Height="32" Padding="0" ToolTip="{localization:LocalString Kind=TopLeft}"
+                                           controlHelper:RibbonButtonHelper.SmallImageSize="32" 
+                                           IsChecked="{Binding ScalerPlacement, Converter={StaticResource EnumToBooleanConverter},ConverterParameter=0}"
+                                           controlHelper:RibbonButtonHelper.AttachedSmallImage="{DynamicResource CornerPos_OutlineDrawingImage}">
+                        <telerik:RadRibbonToggleButton.RenderTransform>
+                            <RotateTransform Angle="90" CenterX="16" CenterY="16"/>
+                        </telerik:RadRibbonToggleButton.RenderTransform>
+                        <telerik:RadRibbonToggleButton.Resources>
+                            <ResourceDictionary Source="./Resources/CornerPos_Outline.xaml"/>
+                        </telerik:RadRibbonToggleButton.Resources>
+                    </telerik:RadRibbonToggleButton>
+                    <Label ToolTip="{localization:LocalString Kind=TopLeft}" 
+                       Visibility="{Binding ElementName=TopLeft, Path=IsChecked, Converter={StaticResource BoolToVisibilityC}}"/>
+                </Grid>
+                <Grid>
+                    <telerik:RadRibbonToggleButton x:Name="TopRight" Width="32" Height="32" Padding="0" ToolTip="{localization:LocalString Kind=TopRight}"
+                                           controlHelper:RibbonButtonHelper.SmallImageSize="32" 
+                                           IsChecked="{Binding ScalerPlacement, Converter={StaticResource EnumToBooleanConverter},ConverterParameter=1}"
+                                           controlHelper:RibbonButtonHelper.AttachedSmallImage="{DynamicResource CornerPos_OutlineDrawingImage}">
+                        <telerik:RadRibbonToggleButton.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="16" CenterY="16"/>
+                        </telerik:RadRibbonToggleButton.RenderTransform>
+                        <telerik:RadRibbonToggleButton.Resources>
+                            <ResourceDictionary Source="./Resources/CornerPos_Outline.xaml"/>
+                        </telerik:RadRibbonToggleButton.Resources>
+                    </telerik:RadRibbonToggleButton>
+                    <Label ToolTip="{localization:LocalString Kind=TopRight}" 
+                       Visibility="{Binding ElementName=TopRight, Path=IsChecked, Converter={StaticResource BoolToVisibilityC}}"/>
+                </Grid>
+                <Grid>
+                    <telerik:RadRibbonToggleButton x:Name="BottomRight" Width="32" Height="32" Padding="0" ToolTip="{localization:LocalString Kind=BottomRight}"
+                                           controlHelper:RibbonButtonHelper.SmallImageSize="32" 
+                                           IsChecked="{Binding ScalerPlacement, Converter={StaticResource EnumToBooleanConverter},ConverterParameter=3}"
+                                           controlHelper:RibbonButtonHelper.AttachedSmallImage="{DynamicResource CornerPos_OutlineDrawingImage}">
+                        <telerik:RadRibbonToggleButton.RenderTransform>
+                            <RotateTransform Angle="-90" CenterX="16" CenterY="16"/>
+                        </telerik:RadRibbonToggleButton.RenderTransform>
+                        <telerik:RadRibbonToggleButton.Resources>
+                            <ResourceDictionary Source="./Resources/CornerPos_Outline.xaml"/>
+                        </telerik:RadRibbonToggleButton.Resources>
+                    </telerik:RadRibbonToggleButton>
+                    <Label ToolTip="{localization:LocalString Kind=BottomRight}" 
+                       Visibility="{Binding ElementName=BottomRight, Path=IsChecked, Converter={StaticResource BoolToVisibilityC}}"/>
+                </Grid>
+            </StackPanel>
+            <telerik:RadButton Grid.Row="0" Grid.Column="1" Content="{localization:LocalString Kind=OK}" 
+                           VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="0,0,2,0"
+                           Height="30" Width="80" Click="RadButton_Click"/>
+        </Grid>
+    </Grid>
+</telerik:RadWindow>

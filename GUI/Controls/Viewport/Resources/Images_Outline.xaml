@@ -1,0 +1,15 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Geometry x:Key="Images_OutlineGeometry1">F1 M64,64z M0,0z M39.5,11.9L39.5,11.9 8,27.65 18.35,48.2 18.35,23.45 45.35,23.45z</Geometry>
+  <Geometry x:Key="Images_OutlineGeometry2">F1 M64,64z M0,0z M20.75,25.851L20.75,52.1 56,52.1 56,25.851 20.75,25.851z M53,49.1L23.75,49.104 23.75,28.854 53,28.854 53,48.093</Geometry>
+  <Geometry x:Key="Images_OutlineGeometry3">F1 M64,64z M0,0z M30.049,31.7C28.399,31.7 27.049,33.049 27.049,34.7 27.049,36.349 28.399,37.7 30.049,37.7 31.7,37.7 33.049,36.349 33.049,34.7 33.049,33.049 31.7,31.7 30.049,31.7z</Geometry>
+  <Geometry x:Key="Images_OutlineGeometry4">F1 M64,64z M0,0z M53.271,49.1L53.271,49.1 50.299,38.45 46.549,38.45 43.85,35.45 38,43.549 34.85,41.45 28,49.1z</Geometry>
+  <DrawingGroup x:Key="Images_OutlineDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+    <DrawingGroup Opacity="1">
+      <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Images_OutlineGeometry1}" />
+      <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Images_OutlineGeometry2}" />
+      <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Images_OutlineGeometry3}" />
+      <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Images_OutlineGeometry4}" />
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="Images_OutlineDrawingImage" Drawing="{StaticResource Images_OutlineDrawingGroup}" />
+</ResourceDictionary>

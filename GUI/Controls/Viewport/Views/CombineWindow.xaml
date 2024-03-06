@@ -1,0 +1,46 @@
+﻿<telerik:RadWindow x:Class="Viewport.Views.CombineWindow"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                   xmlns:localization="clr-namespace:PluginCommon.Localization;assembly=PluginCommon"
+                   xmlns:controls="clr-namespace:FilterWheelShared.Controls.MultiImageSelector;assembly=FilterWheelShared"
+                   xmlns:mat="clr-namespace:Telerik.Windows.Controls.MaterialControls;assembly=Telerik.Windows.Controls"
+                   xmlns:navigation="clr-namespace:Telerik.Windows.Controls.Navigation;assembly=Telerik.Windows.Controls.Navigation"
+                   mc:Ignorable="d" Style="{StaticResource RadWindowStyle}"
+                   mat:ThemeEffectsHelper.IsAcrylic="False"
+                   WindowStartupLocation="CenterOwner"
+                   navigation:RadWindowInteropHelper.ShowInTaskbar="False" HideMinimizeButton="True"
+                   Header="{localization:LocalString Kind=CombineImages}" 
+                   Height="360" Width="520" MinHeight="360" MinWidth="520" ResizeMode="CanResize">
+    <Grid Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Margin="8,2,0,2" Text="{localization:LocalString Kind=CombineTip}" TextWrapping="WrapWithOverflow"/>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Images}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <telerik:VirtualizingWrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:SelectableImage IsSelected="{Binding IsSelected}"
+                                                  ImageSource="{Binding Image}"
+                                                  IsEnabled="{Binding IsEnabled}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <telerik:RadButton Margin="4,2" Width="56" Height="28" Content="{localization:LocalString Kind=Browse}" Visibility="Collapsed" Command="{Binding BrowseCommand}"/>
+            <telerik:RadButton Margin="4,2" Width="56" Height="28" Content="{localization:LocalString Kind=OK}" Click="OkButton_Click" IsEnabled="{Binding IsConfirmAllowed}"/>
+            <telerik:RadButton Margin="4,2" Width="56" Height="28" Content="{localization:LocalString Kind=Cancel}" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</telerik:RadWindow>

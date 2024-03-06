@@ -1,0 +1,175 @@
+﻿<telerik:RadWindow x:Class="Viewport.ProfileView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Viewport"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:navigation="clr-namespace:Telerik.Windows.Controls.Navigation;assembly=Telerik.Windows.Controls.Navigation"
+        xmlns:mat="clr-namespace:Telerik.Windows.Controls.MaterialControls;assembly=Telerik.Windows.Controls" 
+        xmlns:localization="clr-namespace:PluginCommon.Localization;assembly=PluginCommon"
+        xmlns:service="clr-namespace:FilterWheelShared.DeviceDataService;assembly=FilterWheelShared"
+        mc:Ignorable="d" WindowStartupLocation="CenterOwner" 
+        navigation:RadWindowInteropHelper.ShowInTaskbar="False"
+        Header="{localization:LocalString Kind=Profile}"
+        Height="360" Width="520" ResizeMode="NoResize"
+        mat:ThemeEffectsHelper.IsAcrylic="False" Style="{StaticResource RadWindowStyle}">
+    <Grid Margin="6">        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--For mono image-->
+        <telerik:RadCartesianChart x:Name="ProfileMonoChart" 
+                                   RenderOptions.BitmapScalingMode="LowQuality"
+                                   EmptyContent="{localization:LocalString Kind=DrawProfileLine}">
+            <telerik:RadCartesianChart.TrackBallInfoStyle>
+                <Style TargetType="telerik:TrackBallInfoControl" BasedOn="{StaticResource {x:Type telerik:TrackBallInfoControl}}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                </Style>
+            </telerik:RadCartesianChart.TrackBallInfoStyle>
+            <telerik:RadCartesianChart.TrackBallLineStyle>
+                <Style TargetType="Polyline">
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter Property="Stroke" Value="Gray" />
+                </Style>
+            </telerik:RadCartesianChart.TrackBallLineStyle>
+            <telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:LinearAxis x:Name="XAxisMono" ShowLabels="True" Minimum="0" Visibility="Visible" SmartLabelsMode="SmartStep">
+                    <telerik:LinearAxis.Title>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{localization:LocalString Kind=AxisIndex}" Margin="0,0,2,0"/>
+                            <TextBlock x:Name="PxMonoTB">
+                                <Run Text="("/><Run Text="{localization:LocalString Kind=UnitPx}"/><Run Text=")"/>
+                            </TextBlock>
+                            <TextBlock x:Name="UmMonoTB" Visibility="Collapsed">
+                                <Run Text="("/><Run Text="{localization:LocalString Kind=UnitUm}"/><Run Text=")"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </telerik:LinearAxis.Title>
+                </telerik:LinearAxis>
+            </telerik:RadCartesianChart.HorizontalAxis>
+            <telerik:RadCartesianChart.VerticalAxis>
+                <telerik:LinearAxis x:Name="YAxisMono" ShowLabels="True" Minimum="0" Title="{localization:LocalString Kind=AxisIntensity}"/>
+            </telerik:RadCartesianChart.VerticalAxis>
+            <telerik:RadCartesianChart.Series>
+                <telerik:ScatterLineSeries x:Name="ProfileMonoSerise" RenderOptions.BitmapScalingMode="LowQuality" YValueBinding="YValue" XValueBinding="XValue" ShowLabels="False">
+                    <telerik:ScatterLineSeries.TrackBallInfoTemplate>
+                        <DataTemplate >
+                            <StackPanel Background="Transparent" Orientation="Horizontal" Margin="0,0,10,0">
+                                <TextBlock Text="X:" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                                <TextBlock Text="{Binding DataPoint.XValue}" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}" Margin="0,0,8,0"/>
+                                <TextBlock Text="Y:" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                                <TextBlock Text="{Binding DataPoint.YValue}" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:ScatterLineSeries.TrackBallInfoTemplate>
+                </telerik:ScatterLineSeries>
+
+            </telerik:RadCartesianChart.Series>
+            <telerik:RadCartesianChart.Behaviors>
+                <telerik:ChartTrackBallBehavior ShowTrackInfo="True" ShowIntersectionPoints="True" SnapSinglePointPerSeries="False" SnapMode="ClosestPoint" />
+            </telerik:RadCartesianChart.Behaviors>
+        </telerik:RadCartesianChart>
+
+
+        <telerik:RadCartesianChart x:Name="ProfileColorChart" EmptyContent="{localization:LocalString Kind=DrawProfileLine}"  SnapsToDevicePixels="False">
+            <telerik:RadCartesianChart.TrackBallInfoStyle>
+                <Style TargetType="telerik:TrackBallInfoControl" BasedOn="{StaticResource {x:Type telerik:TrackBallInfoControl}}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                </Style>
+            </telerik:RadCartesianChart.TrackBallInfoStyle>
+            <telerik:RadCartesianChart.TrackBallLineStyle>
+                <Style TargetType="Polyline">
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter Property="Stroke" Value="Gray" />
+                </Style>
+            </telerik:RadCartesianChart.TrackBallLineStyle>
+            <telerik:RadCartesianChart.HorizontalAxis>
+                <!--<telerik:CategoricalAxis x:Name="XAxisColor" ShowLabels="True" Visibility="Visible" TickThickness="1" MajorTickOffset="1" SmartLabelsMode="SmartStep"/>-->
+                <telerik:LinearAxis x:Name="XAxisColor" ShowLabels="True" Visibility="Visible" SmartLabelsMode="SmartStep">
+                    <telerik:LinearAxis.Title>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{localization:LocalString Kind=AxisIndex}" Margin="0,0,2,0"/>
+                            <TextBlock x:Name="PxColorTB">
+                                <Run Text="("/><Run Text="{localization:LocalString Kind=UnitPx}"/><Run Text=")"/>
+                            </TextBlock>
+                            <TextBlock x:Name="UmColorTB" Visibility="Collapsed">
+                                <Run Text="("/><Run Text="{localization:LocalString Kind=UnitUm}"/><Run Text=")"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </telerik:LinearAxis.Title>
+                </telerik:LinearAxis>                                    
+            </telerik:RadCartesianChart.HorizontalAxis>
+            <telerik:RadCartesianChart.VerticalAxis>
+                <telerik:LinearAxis  x:Name="YAxisColor" ShowLabels="True" Minimum="0" Title="{localization:LocalString Kind=AxisIntensity}"/>
+            </telerik:RadCartesianChart.VerticalAxis>
+            <telerik:RadCartesianChart.Series>
+                <telerik:ScatterLineSeries x:Name="ProfileRSerise" Stroke="Red" YValueBinding="YValue" XValueBinding="XValue" 
+                                           ShowLabels="False" StrokeThickness="1">
+                    <telerik:ScatterLineSeries.TrackBallInfoTemplate>
+                        <DataTemplate >
+                            <StackPanel Background="Transparent" Orientation="Horizontal" Margin="0,0,10,0">
+                                <TextBlock Text="R: X:" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                                <TextBlock Text="{Binding DataPoint.XValue}" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}" Margin="0,0,8,0"/>
+                                <TextBlock Text="Y:" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                                <TextBlock Text="{Binding DataPoint.YValue}" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:ScatterLineSeries.TrackBallInfoTemplate>
+                </telerik:ScatterLineSeries>
+                <telerik:ScatterLineSeries x:Name="ProfileGSerise" Stroke="Lime" YValueBinding="YValue" XValueBinding="XValue" 
+                                           ShowLabels="False" StrokeThickness="1">
+                    <telerik:ScatterLineSeries.TrackBallInfoTemplate>
+                        <DataTemplate >
+                            <StackPanel Background="Transparent" Orientation="Horizontal" Margin="0,0,10,0">
+                                <TextBlock Text="G: X:" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                                <TextBlock Text="{Binding DataPoint.XValue}" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}" Margin="0,0,8,0"/>
+                                <TextBlock Text="Y:" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                                <TextBlock Text="{Binding DataPoint.YValue}" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:ScatterLineSeries.TrackBallInfoTemplate>
+                </telerik:ScatterLineSeries>
+                <telerik:ScatterLineSeries x:Name="ProfileBSerise" Stroke="Blue" YValueBinding="YValue" XValueBinding="XValue" 
+                                           ShowLabels="False" StrokeThickness="1">
+                    <telerik:ScatterLineSeries.TrackBallInfoTemplate>
+                        <DataTemplate >
+                            <StackPanel Background="Transparent" Orientation="Horizontal" Margin="0,0,10,0">
+                                <TextBlock Text="B: X:" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                                <TextBlock Text="{Binding DataPoint.XValue}" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}" Margin="0,0,8,0"/>
+                                <TextBlock Text="Y:" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                                <TextBlock Text="{Binding DataPoint.YValue}" Foreground="{telerik:FluentResource ResourceKey=MarkerBrush}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:ScatterLineSeries.TrackBallInfoTemplate>
+                </telerik:ScatterLineSeries>
+            </telerik:RadCartesianChart.Series>
+            <telerik:RadCartesianChart.Behaviors >
+                <telerik:ChartTrackBallBehavior x:Name="Behavior_Track" ShowTrackInfo="True" ShowIntersectionPoints="True" 
+                                                SnapSinglePointPerSeries="False" SnapMode="None"  />
+            </telerik:RadCartesianChart.Behaviors>
+        </telerik:RadCartesianChart>
+        
+        <DockPanel LastChildFill="False" Grid.Row="1" Margin="0,5,0,0">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Left" Text="{localization:LocalString Kind=LineW}"/>
+            <telerik:RadNumericUpDown x:Name="ProfileLineWidth" Margin="6,0" Width="80" HorizontalContentAlignment="Left" ShowButtons="False" 
+                                      IsInteger="True" Minimum="1" Maximum="10" ValueChanged="ProfileLineWidth_ValueChanged"/>
+            <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{localization:LocalString Kind=XAxis}" Margin="4,0"/>-->
+            <!--<CheckBox Content="{localization:LocalString Kind=XAxis}" 
+                      IsChecked="{Binding Source={x:Static service:DisplayService.Instance},Path=IsPhysicalProfile}"
+                      Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>-->
+            <!--<telerik:RadComboBox SelectedIndex="0" SelectionChanged="RadComboBox_SelectionChanged">
+                <telerik:RadComboBoxItem>Micron</telerik:RadComboBoxItem>
+                <telerik:RadComboBoxItem>Pixel</telerik:RadComboBoxItem>
+            </telerik:RadComboBox>-->
+            <telerik:RadButton x:Name="ExportBtn" DockPanel.Dock="Right" Content="{localization:LocalString Kind=Export}" Width="66" Click="BT_Export_Click"/>
+        </DockPanel>
+    </Grid>
+</telerik:RadWindow>

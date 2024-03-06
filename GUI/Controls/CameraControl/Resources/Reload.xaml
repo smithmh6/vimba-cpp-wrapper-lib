@@ -1,0 +1,9 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Geometry x:Key="ReloadGeometry">F1 M64,64z M0,0z M15.751,0C20.636001,0,25.022001,2.2929983,27.913001,5.881995L31.003001,3.6879971 31.502001,8.2739933 32.000001,12.85999 27.714001,10.965991 23.527001,9.0719928 26.119,7.177994C23.626001,4.0869966 19.838,2.1929984 15.651001,2.1929984 8.1750011,2.0929985 2.0939999,8.2739933 2.0939999,15.849987 2.0939999,23.426981 8.1750011,29.606977 15.751,29.606977 19.240001,29.606977 22.430001,28.311976 24.823,26.11798 24.823001,26.11798 26.916001,26.018979 25.919001,27.912978L25.919001,28.011977C23.228001,30.404975 19.639001,31.800975 15.751,31.800975 7.078001,31.800975 0,24.622981 0,15.849987 0,7.0779943 7.078001,0 15.751,0z</Geometry>
+    <DrawingGroup x:Key="ReloadDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+        <DrawingGroup Opacity="1" Transform="1.5,0,0,1.5,8,8.14926815032959">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource ReloadGeometry}" />
+        </DrawingGroup>
+    </DrawingGroup>
+    <DrawingImage x:Key="ReloadDrawingImage" Drawing="{StaticResource ReloadDrawingGroup}" />
+</ResourceDictionary>

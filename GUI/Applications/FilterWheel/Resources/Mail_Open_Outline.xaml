@@ -1,0 +1,9 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Geometry x:Key="Mail_Open_OutlineGeometry">F1 M64,64z M0,0z M32.004,38.436L31.839,38.559 14.198,50.188 49.888,50.188 32.004,38.436z M53,27.26L37.991,38.794 53,48.645 53,27.26z M11,27.2L11,48.701 26.031,38.794 11,27.2z M26,23.188L38,23.188C38.828,23.188 39.5,23.858 39.5,24.688 39.5,25.518 38.828,26.188 38,26.188L26,26.188C25.172,26.188 24.5,25.518 24.5,24.688 24.5,23.858 25.172,23.188 26,23.188z M47,19.537L47,28.087 52.688,23.716 47,19.537z M17,19.536L11.355,23.686 17,28.039 17,19.536z M26,17.188L38,17.188C38.828,17.188 39.5,17.858 39.5,18.688 39.5,19.518 38.828,20.188 38,20.188L26,20.188C25.172,20.188 24.5,19.518 24.5,18.688 24.5,17.858 25.172,17.188 26,17.188z M20,13.813L20,30.354 28.681,37.048 30.118,36.102C30.664,35.662 31.331,35.44 32,35.438 32.668,35.438 33.337,35.66 33.885,36.1L35.336,37.051 44,30.393 44,13.813 20,13.813z M20,10.813L44,10.813C45.654,10.813,47,12.159,47,13.813L47,15.815 55.389,21.979C55.766,22.255,55.975,22.673,55.998,23.104L56,23.188 56,23.203 56,23.248 56,23.252 56,50.188C56,51.841,54.654,53.188,53,53.188L11,53.188C9.346,53.188,8,51.841,8,50.188L8,23.188 8.002,23.188 8.002,23.105C8.026,22.673,8.236,22.255,8.612,21.98L17,15.812 17,13.812C17,12.158,18.345,10.813,20,10.813z</Geometry>
+  <DrawingGroup x:Key="Mail_Open_OutlineDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+    <DrawingGroup Opacity="1">
+      <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Mail_Open_OutlineGeometry}" />
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="Mail_Open_OutlineDrawingImage" Drawing="{StaticResource Mail_Open_OutlineDrawingGroup}" />
+</ResourceDictionary>

@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <Configurations>Debug;Release</Configurations>
+    <BaseOutputPath>$(SolutionDir)Output</BaseOutputPath>
+    <Platforms>x64;x86</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Properties\**" />
+    <EmbeddedResource Remove="Properties\**" />
+    <None Remove="Properties\**" />
+    <Page Remove="Properties\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controls\RibbonButtonHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Thorlabs.CustomControls.TelerikAndSciChart">
+      <HintPath>..\Tools\Thorlabs.CustomControls.TelerikAndSciChart.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DrawingTool" Version="1.1.0" />
+    <PackageReference Include="Prism" Version="8.1.97" />
+    <PackageReference Include="ProcessLibrary" Version="1.1.1.1" />
+    <PackageReference Include="ThorLog" Version="1.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="C:\Users\root\.nuget\packages\thorlog\1.0.1\build\ThorLogger_x64.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="C:\Users\root\.nuget\packages\thorlog\1.0.1\build\ThorLogger_x64.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="C:\Users\root\.nuget\packages\thorlog\1.0.1\build\ThorLogger_x86.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\DrawingTools\Resources\" />
+  </ItemGroup>
+</Project>

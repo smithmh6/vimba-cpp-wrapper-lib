@@ -1,0 +1,9 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Geometry x:Key="Shape_Ellipse_OutlineGeometry">F1 M64,64z M0,0z M32,18.735C20.42,18.735 11,24.687 11,32.001 11,39.314 20.42,45.266 32,45.266 43.58,45.266 53,39.315 53,32.001 53,24.687 43.58,18.735 32,18.735z M32,15.735C45.232,15.735 56,23.031 56,32.001 56,40.969 45.232,48.266 32,48.266 18.767,48.266 8,40.969 8,32.001 8,23.031 18.767,15.735 32,15.735z</Geometry>
+    <DrawingGroup x:Key="Shape_Ellipse_OutlineDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+        <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Shape_Ellipse_OutlineGeometry}" />
+        </DrawingGroup>
+    </DrawingGroup>
+    <DrawingImage x:Key="Shape_Ellipse_OutlineDrawingImage" Drawing="{StaticResource Shape_Ellipse_OutlineDrawingGroup}" />
+</ResourceDictionary>

@@ -1,0 +1,33 @@
+﻿<telerik:RadWindow x:Class="FilterWheel.View.SupportWindow"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:navigation="clr-namespace:Telerik.Windows.Controls.Navigation;assembly=Telerik.Windows.Controls.Navigation"
+                   xmlns:localization="clr-namespace:FilterWheel.Localization"
+                   xmlns:prism="http://prismlibrary.com/"
+                   prism:ViewModelLocator.AutoWireViewModel="True"
+                   mc:Ignorable="d" WindowStartupLocation="CenterOwner" 
+                   navigation:RadWindowInteropHelper.ShowInTaskbar="False" SizeToContent="True"
+                   HeaderedContentControl.Header="{localization:LocalString Kind=Support}" Height="400" Width="768" ResizeMode="CanResize" Style="{DynamicResource RadWindowStyle}">
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock><Run Text="{localization:LocalString Kind=SupportWindowDescription1}"/><Hyperlink NavigateUri="mailto:techsupport@thorlabs.com" RequestNavigate="Hyperlink_RequestNavigate">techsupport@thorlabs.com</Hyperlink><Run Text="{localization:LocalString Kind=SupportWindowDescription2}"/></TextBlock>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Border BorderThickness="1" Margin="0,8">
+                <telerik:RadWatermarkTextBox Name="LogTextBox" Text="{Binding LogMessage}" IsReadOnly="True" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" BorderThickness="0"
+                                              HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" WatermarkContent="No error log found."/>
+            </Border>
+            <telerik:RadButton Width="140" Grid.Row="1" Command="{Binding CopyCommand}" HorizontalAlignment="Right" Margin="0,0,154,0" Content="{localization:LocalString Kind=CopyToClipboard}"/>
+            <telerik:RadButton Width="140" Grid.Row="1" Command="{Binding SaveCommand}" HorizontalAlignment="Right" Content="{localization:LocalString Kind=SaveToDisk}"/>
+        </Grid>
+    </Grid>
+</telerik:RadWindow>

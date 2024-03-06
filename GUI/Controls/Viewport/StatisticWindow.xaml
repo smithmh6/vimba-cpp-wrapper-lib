@@ -1,0 +1,101 @@
+﻿<telerik:RadWindow x:Class="Viewport.StatisticWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:navigation="clr-namespace:Telerik.Windows.Controls.Navigation;assembly=Telerik.Windows.Controls.Navigation"
+        xmlns:mat="clr-namespace:Telerik.Windows.Controls.MaterialControls;assembly=Telerik.Windows.Controls"
+        xmlns:localization="clr-namespace:PluginCommon.Localization;assembly=PluginCommon"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:infra="clr-namespace:Viewport.Infrastructure"
+        xmlns:converter="clr-namespace:Viewport.Converter"
+        xmlns:local="clr-namespace:Viewport"
+        mc:Ignorable="d" WindowStartupLocation="CenterOwner"
+        Header="{localization:LocalString Kind=Statistics}" 
+        Height="415" Width="600" ResizeMode="NoResize"
+        x:Name="StatisticWnd"
+        navigation:RadWindowInteropHelper.ShowInTaskbar="False"
+        mat:ThemeEffectsHelper.IsAcrylic="False" Style="{StaticResource RadWindowStyle}">
+    <telerik:RadWindow.Resources>
+        <Style x:Key="ShowColorCellStyle" TargetType="{x:Type telerik:GridViewCell}" BasedOn="{StaticResource {x:Type telerik:GridViewCell}}">
+            <Setter Property="Background" Value="{Binding ROIBrush}"/>
+        </Style>
+        <Style x:Key="NotShowColorCellStyle" TargetType="{x:Type telerik:GridViewCell}" BasedOn="{StaticResource {x:Type telerik:GridViewCell}}">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <infra:ColorStyleSelector x:Key="ColorStyleSelector" 
+                                  ShowColorStyle="{StaticResource ShowColorCellStyle}" 
+                                  NotShowColorStyle="{StaticResource NotShowColorCellStyle}"/>
+        <Style TargetType="{x:Type telerik:GridViewDataColumn}">
+            <Setter Property="HeaderTextAlignment" Value="Center"/>
+            <Setter Property="IsFilterable" Value="False"/>
+            <Setter Property="IsSortable" Value="False"/>
+            <Setter Property="IsGroupable" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="IsSearchable" Value="False"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+    </telerik:RadWindow.Resources>
+    <telerik:RadGridView x:Name="StatisticGrid" RowIndicatorVisibility="Collapsed" IsReadOnly="True" ShowColumnSortIndexes="False" 
+                             AutoGenerateColumns="False" SelectionMode="Extended" CanUserFreezeColumns="False" CanUserDeleteRows="False" 
+                             CanUserGroupColumns="False" CanUserInsertRows="False" ShowGroupPanel="False" CanUserReorderColumns="False"
+                             CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSearch="False" GroupHeaderTemplate="{x:Null}"
+                             CanUserSearchInHiddenColumns="False" CanUserSortColumns="False" CanUserSortGroups="False" >
+        <b:Interaction.Behaviors>
+            <local:GridViewBehavior SelectedItems="{Binding SelectedROIs,ElementName=StatisticWnd}"/>
+        </b:Interaction.Behaviors>
+        <telerik:RadGridView.Columns>
+            <telerik:GridViewDataColumn Width="40" IsResizable="False" Header="Id" DataMemberBinding="{Binding Index}">
+                <telerik:GridViewDataColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Index}" HorizontalAlignment="Center" 
+                                   Visibility="{Binding ShowIndexAndColor, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    </DataTemplate>
+                </telerik:GridViewDataColumn.CellTemplate>
+            </telerik:GridViewDataColumn>
+            <telerik:GridViewDataColumn Width="45" IsResizable="False" Header="{localization:LocalString Kind=Color}" 
+                                        DataMemberBinding="{Binding ROIBrush}" CellStyleSelector="{StaticResource ColorStyleSelector}">
+                <telerik:GridViewDataColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock/>
+                    </DataTemplate>
+                </telerik:GridViewDataColumn.CellTemplate>
+            </telerik:GridViewDataColumn>
+            <telerik:GridViewDataColumn MinWidth="40" Header="{localization:LocalString Kind=CH}" DataMemberBinding="{Binding ChannelType}"
+                                            IsVisible="{Binding IsColor, Mode=OneWay}" />
+            <telerik:GridViewDataColumn Width="*" Header="{localization:LocalString Kind=Area}">
+                <telerik:GridViewDataColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat=" {0} ({1}²)">
+                                    <Binding Path="Area"/>
+                                    <Binding Path="Unit"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </telerik:GridViewDataColumn.CellTemplate>
+            </telerik:GridViewDataColumn>
+            <telerik:GridViewDataColumn Width="*" Header="{localization:LocalString Kind=Perimeter}">
+                <telerik:GridViewDataColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat=" {0} ({1})">
+                                    <Binding Path="Perimeter"/>
+                                    <Binding Path="Unit"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </telerik:GridViewDataColumn.CellTemplate>
+            </telerik:GridViewDataColumn>
+            <telerik:GridViewDataColumn Width="0.6*" Header="{localization:LocalString Kind=Min}" DataMemberBinding="{Binding Min}"/>
+            <telerik:GridViewDataColumn Width="0.6*" Header="{localization:LocalString Kind=Max}" DataMemberBinding="{Binding Max}"/>
+            <telerik:GridViewDataColumn Width="0.6*" Header="{localization:LocalString Kind=Mean}" DataMemberBinding="{Binding Mean}"/>
+            <telerik:GridViewDataColumn Width="0.6*" Header="{localization:LocalString Kind=StdDev}" DataMemberBinding="{Binding StdDev}"/>
+        </telerik:RadGridView.Columns>
+    </telerik:RadGridView>
+</telerik:RadWindow>

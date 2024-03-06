@@ -1,0 +1,80 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:selector="clr-namespace:FilterWheelShared.Controls.MultiImageSelector;assembly=FilterWheelShared">
+    <Style TargetType="{x:Type selector:SelectableImage}">
+        <Style.Resources>
+            <Geometry x:Key="Check_Circle_OutlineGeometry1">F1 M64,64z M0,0z M43.625,21.35L43.625,21.35 28.325,34.85 20.975,26.3 16.775,29.899 27.725,42.65 47.225,25.55z</Geometry>
+            <Geometry x:Key="Check_Circle_OutlineGeometry2">F1 M64,64z M0,0z M32,11C20.42,11 11,20.42 11,32 11,43.58 20.42,53 32,53 43.58,53 53,43.58 53,32 53,20.42 43.58,11 32,11z M32,8C45.232,8 56,18.768 56,32 56,45.232 45.232,56 32,56 18.768,56 8,45.232 8,32 8,18.768 18.768,8 32,8z</Geometry>
+            <DrawingGroup x:Key="Check_Circle_OutlineDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+                <DrawingGroup Opacity="1">
+                    <GeometryDrawing Brush="White" Geometry="{StaticResource Check_Circle_OutlineGeometry1}" />
+                </DrawingGroup>
+                <DrawingGroup Opacity="1">
+                    <GeometryDrawing Brush="White" Geometry="{StaticResource Check_Circle_OutlineGeometry2}" />
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage x:Key="Check_Circle_OutlineDrawingImage" Drawing="{StaticResource Check_Circle_OutlineDrawingGroup}" />
+            <Geometry x:Key="Indicator_NormalGeometry">F1 M64,64z M0,0z M56,32C56,45.256 45.256,56 32,56 18.745,56 8,45.256 8,32 8,18.745 18.745,8 32,8 45.256,8 56,18.745 56,32z</Geometry>
+            <DrawingGroup x:Key="Indicator_NormalDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+                <DrawingGroup Opacity="1">
+                    <GeometryDrawing Brush="Black" Geometry="{StaticResource Indicator_NormalGeometry}" />
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage x:Key="Indicator_NormalDrawingImage" Drawing="{StaticResource Indicator_NormalDrawingGroup}" />
+        </Style.Resources>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type selector:SelectableImage}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="VisualStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backgroundMarker" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="IsSelected">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="checkMarker" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backgroundMarker" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="image" Duration="0" Storyboard.TargetProperty="Opacity" To="0.6"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <Grid x:Name="image" Background="Black">
+                                <Image Source="{TemplateBinding ImageSource}"/>
+                            </Grid>
+                            <Grid x:Name="marker" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,8,0">
+                                <Image Name="backgroundMarker" Width="20" Height="20" Source="{StaticResource Indicator_NormalDrawingImage}"/>
+                                <Image Name="checkMarker" Width="20" Height="20" Source="{StaticResource Check_Circle_OutlineDrawingImage}" Visibility="Collapsed"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="#9ACDCDCD"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

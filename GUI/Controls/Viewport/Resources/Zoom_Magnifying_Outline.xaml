@@ -1,0 +1,11 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Geometry x:Key="Zoom_Magnifying_OutlineGeometry1">F1 M64,64z M0,0z M39.242,8C30.004,8 22.486,15.514 22.486,24.749 22.486,28.645 23.825,32.234 26.064,35.084L26.085,35.107 8.001,53.921 10.162,56 28.148,37.289 28.284,37.408C31.222,39.955 35.056,41.498 39.242,41.498 48.48,41.498 55.999,33.984 55.999,24.749 55.999,15.514 48.48,8 39.242,8z M39.242,38.498C31.657,38.498 25.486,32.33 25.486,24.749 25.486,17.168 31.657,11 39.242,11 46.828,11 52.999,17.168 52.999,24.749 52.999,32.33 46.828,38.498 39.242,38.498z</Geometry>
+    <Geometry x:Key="Zoom_Magnifying_OutlineGeometry2">F1 M64,64z M0,0z M46.847,16.734C45.551,15.454 44.006,14.55 42.735,14.55 41.856,14.55 41.135,15.294 41.135,16.174 41.135,16.958 41.703,17.613 42.455,17.749 44.184,18.149 45.559,19.622 45.957,21.229 46.095,21.981 46.75,22.549 47.535,22.549 48.414,22.549 49.135,21.828 49.135,20.949 49.135,19.799 48.166,18.047 46.847,16.734z</Geometry>
+    <DrawingGroup x:Key="Zoom_Magnifying_OutlineDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+        <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Zoom_Magnifying_OutlineGeometry1}" />
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Zoom_Magnifying_OutlineGeometry2}" />
+        </DrawingGroup>
+    </DrawingGroup>
+    <DrawingImage x:Key="Zoom_Magnifying_OutlineDrawingImage" Drawing="{StaticResource Zoom_Magnifying_OutlineDrawingGroup}" />
+</ResourceDictionary>

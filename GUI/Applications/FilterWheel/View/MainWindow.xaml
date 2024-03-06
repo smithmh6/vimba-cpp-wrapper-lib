@@ -1,0 +1,267 @@
+﻿<telerik:RadWindow x:Class="FilterWheel.View.MainWindow"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:navigation="clr-namespace:Telerik.Windows.Controls.Navigation;assembly=Telerik.Windows.Controls.Navigation"
+                   xmlns:localization="clr-namespace:FilterWheel.Localization"
+                   xmlns:helper="clr-namespace:FilterWheelShared.Controls.Helpers;assembly=FilterWheelShared"
+                   xmlns:service="clr-namespace:FilterWheelShared.DeviceDataService;assembly=FilterWheelShared"
+                   xmlns:mat="clr-namespace:Telerik.Windows.Controls.MaterialControls;assembly=Telerik.Windows.Controls"
+                   xmlns:converter="clr-namespace:FilterWheel.Converter"
+                   xmlns:prism="http://prismlibrary.com/"
+                   prism:ViewModelLocator.AutoWireViewModel="True"
+                   xmlns:s="http://schemas.microsoft.com/xaml/behaviors"
+                   xmlns:controlHelper="clr-namespace:FilterWheel.Infrastructure"
+                   mc:Ignorable="d" WindowStartupLocation="CenterScreen" 
+                   navigation:RadWindowInteropHelper.ShowInTaskbar="True" 
+                   navigation:RadWindowInteropHelper.Icon="../Resources/TIC.ico"
+                   Header="{Binding HeaderString}" Height="720" Width="1280" MinHeight="624" MinWidth="1024" 
+                   mat:ThemeEffectsHelper.IsAcrylic="False"                    
+                   Style="{StaticResource RadWindowStyle}">
+    <telerik:RadWindow.IconTemplate>
+        <DataTemplate>
+            <Image Image.Source="../Resources/TIC.ico" Width="24" Height="24" />
+        </DataTemplate>
+    </telerik:RadWindow.IconTemplate>
+    <telerik:RadWindow.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type telerik:RadMenuItem}" BasedOn="{StaticResource {x:Type telerik:RadMenuItem}}">
+                <Setter Property="IconColumnWidth" Value="0"/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <telerik:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+            <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+            <telerik:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter"/>
+            <converter:StatusConverter x:Key="StatusConverter"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Inbox_Outline.xaml"/>
+                <ResourceDictionary Source="../Resources/Outbox_Outline.xaml"/>
+                <ResourceDictionary Source="../Resources/Link_Outline.xaml"/>
+                <ResourceDictionary Source="../Resources/Link_Broken_Outline.xaml"/>
+                <ResourceDictionary Source="../Resources/Equalizer_Outline.xaml"/>
+                <ResourceDictionary Source="../Resources/Synchronize_Circle_Outline.xaml"/>
+                <ResourceDictionary Source="../Resources/Mail_Open_Outline.xaml"/>
+                <ResourceDictionary Source="../Resources/Question_Balloon_Outline.xaml"/>
+                <ResourceDictionary Source="../Resources/Thorlabs_Logo.xaml"/>
+                <ResourceDictionary Source="../Resources/Images_New_Outline.xaml"/>
+                <ResourceDictionary Source="../Resources/Image_Outline.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </telerik:RadWindow.Resources>
+    <telerik:RadWindow.HeaderTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--<telerik:RadMenu>
+                    <telerik:RadMenuItem Header="{localization:LocalString Kind=File}" Padding="10,5">
+                        <telerik:RadMenuItem Header="{localization:LocalString Kind=LoadConfig}" Command="{Binding Path=DataContext.LoadConfigCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type telerik:RadWindow}}}"/>
+                        <telerik:RadMenuItem Header="{localization:LocalString Kind=SaveConfig}" Command="{Binding Path=DataContext.SaveConfigCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type telerik:RadWindow}}}"/>
+                        <telerik:RadMenuItem Header="{localization:LocalString Kind=LoadImage}" Command="{Binding Path=DataContext.LoadImageCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type telerik:RadWindow}}}"/>
+                        <telerik:RadMenuItem Header="{localization:LocalString Kind=Recent}" 
+                                             ItemsSource="{Binding Path=DataContext.RecentFiles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type telerik:RadWindow}}}"
+                                             IsEnabled="{Binding Source={x:Static service:CaptureService.Instance}, Path=IsCapturing, Converter={StaticResource InvertedBooleanConverter}}">
+                            <telerik:RadMenuItem.ItemContainerStyle>
+                                <Style TargetType="{x:Type telerik:RadMenuItem}" BasedOn="{StaticResource {x:Type telerik:RadMenuItem}}">
+                                    <Setter Property="Command" Value="{Binding LoadCommand}"/>
+                                    <Setter Property="Header" Value="{Binding PathForMenuItem}"/>
+                                </Style>
+                            </telerik:RadMenuItem.ItemContainerStyle>
+                        </telerik:RadMenuItem>
+                        --><!--<telerik:RadMenuItem Header="{localization:LocalString Kind=Combine}" Command="{Binding Path=DataContext.CombineCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type telerik:RadWindow}}}"/>--><!--
+                        <telerik:RadMenuItem Header="{localization:LocalString Kind=Close}" Click="RadMenuItemExit_Click"/>
+                    </telerik:RadMenuItem>
+                    <telerik:RadMenuItem Header="{localization:LocalString Kind=Options}" Padding="10,5" IsEnabled="{Binding Source={x:Static service:CaptureService.Instance}, Path=IsCapturing, Converter={StaticResource InvertedBooleanConverter}}">
+                        <telerik:RadMenuItem Header="{localization:LocalString Kind=Settings}"
+                                             Command="{Binding Path=DataContext.SWOptionsCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type telerik:RadWindow}}}"/>
+                        <telerik:RadMenuItem Header="{localization:LocalString Kind=Language}" Loaded="RadMenuItemLanguage_Loaded">
+                            <telerik:RadMenuItem IconColumnWidth="28" Tag="1" IsCheckable="True" Header="English (United States)" Click="MenuItemLanguage_Click"/>
+                            <telerik:RadMenuItem IconColumnWidth="20" Tag="1" IsCheckable="True" Header="中文（中华人民共和国）" Click="MenuItemLanguage_Click"/>
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem Header="{localization:LocalString Kind=Theme}"  Loaded="RadMenuItemTheme_Loaded">
+                            <telerik:RadMenuItem IconColumnWidth="28" Tag="2" IsCheckable="True" Header="{localization:LocalString Kind=Dark}" Click="MenuItemTheme_Click"/>
+                            <telerik:RadMenuItem IconColumnWidth="28" Tag="2" IsCheckable="True" Header="{localization:LocalString Kind=Light}" Click="MenuItemTheme_Click"/>
+                        </telerik:RadMenuItem>
+                    </telerik:RadMenuItem>
+                    <telerik:RadMenuItem Header="{localization:LocalString Kind=Help}" Padding="10,5" IsEnabled="{Binding Source={x:Static service:CaptureService.Instance}, Path=IsCapturing, Converter={StaticResource InvertedBooleanConverter}}">
+                        <telerik:RadMenuItem Header="{localization:LocalString Kind=UpdateRibbonButton}" Command="{Binding Path=DataContext.SWUpdateCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type telerik:RadWindow}}}" />
+                        <telerik:RadMenuItem Header="{localization:LocalString Kind=SupportRibbonButton}" Command="{Binding Path=DataContext.SupportCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type telerik:RadWindow}}}" />
+                        <telerik:RadMenuItem Header="{localization:LocalString Kind=About}" Command="{Binding Path=DataContext.HelpCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type telerik:RadWindow}}}" />
+                    </telerik:RadMenuItem>
+                </telerik:RadMenu>-->
+                <TextBlock Grid.Column="1" Text="{Binding}" Margin="70,0,0,0" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Image Grid.Column="2" Source="{DynamicResource Thorlabs_LogoDrawingImage}" HorizontalAlignment="Right" VerticalAlignment="Center" telerik:WindowHost.HitTestable="True"
+                                   Height="14" ToolTip="thorlabs.com" helper:LinkHelper.Link="https://thorlabs.com"/>
+            </Grid>
+        </DataTemplate>
+    </telerik:RadWindow.HeaderTemplate>
+    <s:Interaction.Triggers>
+        <s:EventTrigger EventName="Loaded">
+            <s:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </s:EventTrigger>
+        <s:EventTrigger EventName="PreviewClosed">
+            <prism:InvokeCommandAction Command="{Binding ClosingCommand}"/>
+        </s:EventTrigger>
+    </s:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0,1" HorizontalAlignment="Stretch" >
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Style="{StaticResource RibbonStackPanel}" 
+                            IsEnabled="{Binding Source={x:Static service:CaptureService.Instance}, Path=IsRunning, Converter={StaticResource InvertedBooleanConverter}}">
+                    <telerik:RadRibbonButton LargeImage="{Binding ButtonImageSource}"
+                                             controlHelper:RibbonButtonHelper.AttachedSmallImage="{Binding ButtonImageSource}" 
+                                             Command="{Binding ConnectionCommand}"                                       
+                                             Text="{localization:LocalString Kind=ConnectRibbonButton}">
+                        <telerik:RadRibbonButton.ToolTip>
+                            <TextBlock Text="{localization:LocalString Kind=ConnectRibbonButton}"/>
+                        </telerik:RadRibbonButton.ToolTip>
+                    </telerik:RadRibbonButton>
+                    <telerik:RadRibbonButton LargeImage="{DynamicResource Outbox_OutlineDrawingImage}"
+                                             IsEnabled="{Binding Source={x:Static service:ThorlabsCamera.Instance},Path=IsCameraConnected}"
+                                             Command="{Binding LoadConfigCommand}"
+                                             controlHelper:RibbonButtonHelper.AttachedSmallImage="{DynamicResource Outbox_OutlineDrawingImage}" 
+                                             Text="{localization:LocalString Kind=LoadConfig}">
+                        <telerik:RadRibbonButton.ToolTip>
+                            <TextBlock Text="{localization:LocalString Kind=LoadConfig}"/>
+                        </telerik:RadRibbonButton.ToolTip>
+                    </telerik:RadRibbonButton>
+                    <telerik:RadRibbonButton LargeImage="{DynamicResource Inbox_OutlineDrawingImage}"
+                                             IsEnabled="{Binding Source={x:Static service:ThorlabsCamera.Instance},Path=IsCameraConnected}"
+                                             Command="{Binding SaveConfigCommand}"
+                                             controlHelper:RibbonButtonHelper.AttachedSmallImage="{DynamicResource Inbox_OutlineDrawingImage}" 
+                                             Text="{localization:LocalString Kind=SaveConfig}">
+                        <telerik:RadRibbonButton.ToolTip>
+                            <TextBlock Text="{localization:LocalString Kind=SaveConfig}"/>
+                        </telerik:RadRibbonButton.ToolTip>
+                    </telerik:RadRibbonButton>
+                    <!--<telerik:RadRibbonButton LargeImage="{DynamicResource Images_New_OutlineDrawingImage}"
+                                         Command="{Binding CombineCommand}"
+                                         controlHelper:RibbonButtonHelper.AttachedSmallImage="{DynamicResource Images_New_OutlineDrawingImage}" 
+                                         Text="{localization:LocalString Kind=Combine}">
+                    <telerik:RadRibbonButton.ToolTip>
+                        <TextBlock Text="{localization:LocalString Kind=CombineImages}"/>
+                    </telerik:RadRibbonButton.ToolTip>
+                </telerik:RadRibbonButton>-->
+                <telerik:RadRibbonButton LargeImage="{DynamicResource Equalizer_OutlineDrawingImage}" 
+                                         controlHelper:RibbonButtonHelper.AttachedSmallImage="{DynamicResource Equalizer_OutlineDrawingImage}"
+                                         IsEnabled="{Binding Source={x:Static service:ThorlabsCamera.Instance},Path=IsCameraConnected}"
+                                         Command="{Binding SWOptionsCommand}" 
+                                         Text="{localization:LocalString Kind=SettingRibbonButton}"/>
+                </StackPanel>
+                <Line X1="0" X2="0" Y1="0" Y2="32" StrokeThickness="1" VerticalAlignment="Center" Margin="4,0,4,0" Style="{StaticResource ThorlabsLine}"/>
+                <Grid IsEnabled="{Binding Source={x:Static service:ThorlabsCamera.Instance},Path=IsCameraConnected}">
+                    <telerik:RadRibbonToggleButton IsEnabled="{Binding Source={x:Static service:CaptureService.Instance},Path=IsCapturing, Converter={StaticResource InvertedBooleanConverter}}"
+                                               controlHelper:RibbonButtonHelper.SmallImageSize="24" Padding="0,3,0,0" Width="32" Height="32" IsThreeState="False"
+                                               controlHelper:RibbonButtonHelper.AttachedSmallImage="{DynamicResource Power_Circle_OutlineDrawingImage}">
+                    <!--IsChecked="{Binding Source={x:Static service:CaptureService.Instance}, Path=IsFilterWheelEnabled, Mode=TwoWay}"-->
+                    <telerik:RadRibbonToggleButton.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.MergedDictionaries>
+                                <ResourceDictionary Source="../Resources/Power_Circle_Outline.xaml"/>
+                            </ResourceDictionary.MergedDictionaries>
+                        </ResourceDictionary>
+                    </telerik:RadRibbonToggleButton.Resources>
+                    <telerik:RadRibbonToggleButton.Style>
+                        <Style TargetType="{x:Type telerik:RadRibbonToggleButton}" BasedOn="{StaticResource {x:Type telerik:RadRibbonToggleButton}}">
+                            <Style.Triggers>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter Property="ToolTip" Value="Off"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="ToolTip" Value="On"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </telerik:RadRibbonToggleButton.Style>
+                </telerik:RadRibbonToggleButton>
+                </Grid>
+                <Line X1="0" X2="0" Y1="0" Y2="32" StrokeThickness="1" VerticalAlignment="Center" Margin="4,0,4,0" Style="{StaticResource ThorlabsLine}"/>
+                <telerik:RadRibbonButton LargeImage="{DynamicResource Synchronize_Circle_OutlineDrawingImage}"
+                                         controlHelper:RibbonButtonHelper.AttachedSmallImage="{DynamicResource Synchronize_Circle_OutlineDrawingImage}" 
+                                         Command="{Binding SWUpdateCommand}"
+                                         Text="{localization:LocalString Kind=UpdateRibbonButton}"/>
+                <telerik:RadRibbonButton LargeImage="{DynamicResource Mail_Open_OutlineDrawingImage}" 
+                                         controlHelper:RibbonButtonHelper.AttachedSmallImage="{DynamicResource Mail_Open_OutlineDrawingImage}" 
+                                         Command="{Binding SupportCommand}" 
+                                         Text="{localization:LocalString Kind=SupportRibbonButton}"/>
+                <telerik:RadRibbonButton LargeImage="{DynamicResource Question_Balloon_OutlineDrawingImage}"
+                                         controlHelper:RibbonButtonHelper.AttachedSmallImage="{DynamicResource Question_Balloon_OutlineDrawingImage}"
+                                         Command="{Binding HelpCommand}" 
+                                         Text="{localization:LocalString Kind=About}"/>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="2,2,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ContentControl x:Name="CameraControlContent" Grid.Row="1"/>
+            </Grid>
+            <ContentControl x:Name="ViewportContent" Grid.Column="1"/>
+            <Border BorderThickness="0,1,0,0" Grid.ColumnSpan="2" Grid.Row="1">
+                <DockPanel LastChildFill="False" Margin="5">
+                    <TextBlock DockPanel.Dock="Left" Text="{localization:LocalString Kind=Ready}" Visibility="{Binding ProgStatus.StatusEnum, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=3}"/>
+                    <StackPanel Orientation="Horizontal" Visibility="{Binding ProgStatus.StatusEnum, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=0;3;4}">
+                        <TextBlock DockPanel.Dock="Left" Visibility="{Binding Source={x:Static service:CaptureService.Instance}, Path=IsLiving, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Run Text="{localization:LocalString Kind=FPS}"/>
+                            <Run Text=":"/>
+                        </TextBlock>
+                        <TextBlock DockPanel.Dock="Left" Visibility="{Binding Source={x:Static service:CaptureService.Instance}, Path=IsCapturing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Run Text="{localization:LocalString Kind=Capturing}"/>
+                            <Run Text=":"/>
+                        </TextBlock>
+                    </StackPanel>
+                    <TextBlock DockPanel.Dock="Left" Text="{Binding ProgStatus.StatusMessage}" Visibility="{Binding ProgStatus.StatusEnum, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=0;1;2;4}" Margin="4,0,0,0" />
+                    <TextBlock DockPanel.Dock="Left" Margin="10,0">
+                        <Run Text="{localization:LocalString Kind=Zoom}"/>
+                        <Run Text="{Binding Zoom, Mode=OneWay}"/><Run Text="%"/>
+                    </TextBlock>
+                    <TextBlock DockPanel.Dock="Left" Text="{Binding Location, Mode=OneWay}"/>
+                    <TextBlock DockPanel.Dock="Left" Visibility="{Binding PixelColorInfo.IsMono, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="10,0,0,0">
+                        <Run Text="{localization:LocalString Kind=Intensity}"/>
+                        <Run Text=":"/>
+                    </TextBlock>
+                    <TextBlock DockPanel.Dock="Left" Text="{Binding PixelColorInfo.ColorInfo, Mode=OneWay}" Margin="10,0"/>
+                    
+                    <StackPanel Width="120" Orientation="Horizontal" DockPanel.Dock="Right">
+                        <Ellipse Width="12" Height="12" Fill="{Binding ProgStatus.StatusEnum, Converter={StaticResource StatusConverter}, ConverterParameter=1}" Margin="0,0,12,0"/>
+                        <TextBlock Text="{localization:LocalString Kind=Normal}" Visibility="{Binding ProgStatus.StatusEnum, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=0;3}" VerticalAlignment="Center" />
+                        <TextBlock Text="{localization:LocalString Kind=Warning}" Visibility="{Binding ProgStatus.StatusEnum, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=1}" VerticalAlignment="Center" />
+                        <TextBlock Text="{localization:LocalString Kind=Error}" Visibility="{Binding ProgStatus.StatusEnum, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=2}" VerticalAlignment="Center" />
+                        <TextBlock Text="Busy" Visibility="{Binding ProgStatus.StatusEnum, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=4}" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <TextBlock DockPanel.Dock="Right" Margin="0,0,15,0">
+                        <Run Text="{localization:LocalString Kind=SensorPixelWidth}"/>
+                        <Run Text=":"/>
+                        <Run Text="{Binding SensorPixelWidth, Mode=OneWay}"/>
+                        <Run Text=" "/>
+                        <Run Text="{localization:LocalString Kind=SensorPixelHeight}"/>
+                        <Run Text=":"/>
+                        <Run Text="{Binding SensorPixelHeight, Mode=OneWay}"/>
+                    </TextBlock>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</telerik:RadWindow>

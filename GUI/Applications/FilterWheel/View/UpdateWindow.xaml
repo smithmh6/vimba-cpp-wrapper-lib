@@ -1,0 +1,56 @@
+﻿<telerik:RadWindow x:Class="FilterWheel.View.UpdateWindow"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                   xmlns:navigation="clr-namespace:Telerik.Windows.Controls.Navigation;assembly=Telerik.Windows.Controls.Navigation"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:localization="clr-namespace:FilterWheel.Localization"
+                   xmlns:prism="http://prismlibrary.com/"
+                   xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+                   prism:ViewModelLocator.AutoWireViewModel="True"
+                   mc:Ignorable="d" WindowStartupLocation="CenterOwner" 
+                   navigation:RadWindowInteropHelper.ShowInTaskbar="False"
+                   HeaderedContentControl.Header="{localization:LocalString Kind=Update}" Height="200" Width="440" ResizeMode="NoResize" Style="{DynamicResource RadWindowStyle}">
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </b:EventTrigger>
+        <b:EventTrigger EventName="Closed">
+            <b:InvokeCommandAction Command="{Binding ClosedCommand}"/>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+    <Border Margin="8" BorderThickness="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="158"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center">
+                    <Run Text="{localization:LocalString Kind=CurrentVersion}"/>
+                    <Run Text="{Binding CurrentVersion, Mode=OneWay}"/>
+            </TextBlock>
+            <telerik:RadButton Grid.Column="1" Height="32" Padding="0" Content="{localization:LocalString Kind=CheckForUpdate}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding RefreshCommand}"/>
+            <TextBlock Grid.Row="1" VerticalAlignment="Center">
+                    <Run Text="{localization:LocalString Kind=LastestVersion}"/>
+                    <Run Text="{Binding LastestVersion}"/>
+            </TextBlock>
+            <telerik:RadButton Grid.Column="1" Grid.Row="1" Height="32" Padding="0" Content="{localization:LocalString Kind=Download}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding DownloadCommand}"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="2">
+                <TextBlock Text="{localization:LocalString Kind=ForMoreInfomation}" VerticalAlignment="Center"/>
+                <TextBlock VerticalAlignment="Center">
+                        <Hyperlink NavigateUri="{Binding UpdatePageUri, Mode=OneWay}" RequestNavigate="Hyperlink_RequestNavigate">
+                            <Run Text="{localization:LocalString Kind=SoftwareWebpage}"/>
+                        </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+            <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Margin="0,5,0,0" localization:LocalizationShell.Kind="{Binding SoftwareStatus}" localization:LocalizationShell.Path="Text"/>
+        </Grid>
+    </Border>
+</telerik:RadWindow>

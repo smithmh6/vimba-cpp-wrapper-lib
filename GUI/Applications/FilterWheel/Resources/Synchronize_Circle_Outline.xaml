@@ -1,0 +1,15 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Geometry x:Key="Synchronize_Circle_OutlineGeometry1">F1 M64,64z M0,0z M39.213,25.637C41.228,27.652 42.076,30.198 42.182,32.849 42.182,35.395 41.228,38.046 39.213,40.061 37.197,42.077 34.545,43.032 32,43.032L32,38.153 25.105,45.047 31.894,51.835 31.894,47.169C35.713,47.169 39.425,45.79 42.289,42.926 47.91,37.304 47.91,28.183 42.289,22.562L39.213,25.637z</Geometry>
+  <Geometry x:Key="Synchronize_Circle_OutlineGeometry2">F1 M64,64z M0,0z M24.575,38.152L24.787,38.364C22.772,36.348 21.817,33.909 21.817,31.151 21.817,28.605 22.772,25.954 24.787,23.939 26.696,22.029 29.242,20.969 31.787,20.969L31.787,26.06 38.787,19.06 31.681,11.954 31.681,16.621C28.075,16.621 24.363,17.999 21.499,20.864 15.877,26.485 15.877,35.607 21.499,41.228L24.575,38.152z</Geometry>
+  <Geometry x:Key="Synchronize_Circle_OutlineGeometry3">F1 M64,64z M0,0z M32,11C20.42,11 11,20.42 11,32 11,43.58 20.42,53 32,53 43.58,53 53,43.58 53,32 53,20.42 43.58,11 32,11z M32,8C45.232,8 56,18.767 56,32 56,45.232 45.232,56 32,56 18.767,56 8,45.232 8,32 8,18.767 18.767,8 32,8z</Geometry>
+  <DrawingGroup x:Key="Synchronize_Circle_OutlineDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+    <DrawingGroup Opacity="1">
+      <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Synchronize_Circle_OutlineGeometry1}" />
+      <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Synchronize_Circle_OutlineGeometry2}" />
+    </DrawingGroup>
+    <DrawingGroup Opacity="1">
+      <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Synchronize_Circle_OutlineGeometry3}" />
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="Synchronize_Circle_OutlineDrawingImage" Drawing="{StaticResource Synchronize_Circle_OutlineDrawingGroup}" />
+</ResourceDictionary>

@@ -1,0 +1,7 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Geometry x:Key="Play_SolidGeometry">F1 M64,64z M0,0z M8,52.57C8,54.447 9.581,56 11.43,56 12.581,56 13.734,55.221 14.859,54.715L53.458,35.429C54.393,34.973 56,34.037 56,32.001 56,29.964 54.393,29.027 53.457,28.571L14.858,9.286C13.733,8.778 12.581,8 11.43,8 9.581,8 8,9.554 8,11.429L8,52.57z</Geometry>
+    <DrawingGroup x:Key="Play_SolidDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+        <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Play_SolidGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="Play_SolidDrawingImage" Drawing="{StaticResource Play_SolidDrawingGroup}" />
+</ResourceDictionary>

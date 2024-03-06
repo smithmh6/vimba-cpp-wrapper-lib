@@ -1,0 +1,13 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Geometry x:Key="Power_Circle_OutlineGeometry1">F1 M64,64z M0,0z M32,11C20.42,11 11,20.42 11,32 11,43.58 20.42,53 32,53 43.58,53 53,43.58 53,32 53,20.42 43.58,11 32,11z M32,8C45.232,8 56,18.767 56,32 56,45.232 45.232,56 32,56 18.767,56 8,45.232 8,32 8,18.767 18.767,8 32,8z</Geometry>
+    <Geometry x:Key="Power_Circle_OutlineGeometry2">F1 M64,64z M0,0z M27,19.712L27,23.621C24.273,25.257 22.455,28.257 22.455,31.71 22.455,36.983 26.727,41.257 32,41.257 37.272,41.257 41.545,36.984 41.545,31.71 41.545,28.256 39.636,25.166 36.909,23.529L36.909,19.712C41.637,21.622 45,26.257 45,31.711 45,38.895 39.182,44.711 32,44.711 24.818,44.711 19,38.895 19,31.711 19,26.348 22.273,21.711 27,19.712z M31.728,15.622L32.091,15.622C33.182,15.622,34,16.439,34,17.531L34,31.985C34,33.077,33.182,33.895,32.091,33.895L31.728,33.895C30.637,33.895,29.819,33.077,29.819,31.985L29.819,17.531C29.818,16.439,30.728,15.622,31.728,15.622z</Geometry>
+    <DrawingGroup x:Key="Power_Circle_OutlineDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+        <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Power_Circle_OutlineGeometry1}" />
+        </DrawingGroup>
+        <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Power_Circle_OutlineGeometry2}" />
+        </DrawingGroup>
+    </DrawingGroup>
+    <DrawingImage x:Key="Power_Circle_OutlineDrawingImage" Drawing="{StaticResource Power_Circle_OutlineDrawingGroup}" />
+</ResourceDictionary>

@@ -1,0 +1,21 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Geometry x:Key="Snap_SolidGeometry1">F1 M64,64z M0,0z M39.109,41.114C44.116,41.114 49.214,41.114 54.228,41.114 56.657,36.304 56.623,26.83 53.913,22.363</Geometry>
+    <Geometry x:Key="Snap_SolidGeometry2">F1 M64,64z M0,0z M29.805,43.525C32.987,47.296 35.924,51.318 39.154,55.046 44.751,53.228 49.249,49.715 52.179,45.304 52.595,44.674 52.991,44.055 53.124,43.419 45.387,43.489 37.364,43.542 29.805,43.525z</Geometry>
+    <Geometry x:Key="Snap_SolidGeometry3">F1 M64,64z M0,0z M15.042,14.925C11.081,18.936 7.837,24.22 8.006,32.001 14.913,28.414 22.42,25.047 29.12,21.63 24.373,19.448 19.769,17.128 15.042,14.925z</Geometry>
+    <Geometry x:Key="Snap_SolidGeometry4">F1 M64,64z M0,0z M8.007,34.409C8.582,40.5 11.173,45.282 14.519,48.552 14.903,48.927 15.99,49.704 15.99,49.704 17.626,42.642 19.495,35.252 20.821,28.229 16.6,30.34 12.279,32.352 8.007,34.409z</Geometry>
+    <Geometry x:Key="Snap_SolidGeometry5">F1 M64,64z M0,0z M52.859,19.954C49.417,14.378 44.499,10.273 37.206,8.536 39.032,16.527 40.912,24.465 42.671,32.525</Geometry>
+    <Geometry x:Key="Snap_SolidGeometry6">F1 M64,64z M0,0z M34.793,8.115C26.779,7.433 21.009,9.865 16.829,13.353 24.103,16.681 31.162,20.222 38.363,23.619 37.174,18.452 36.038,13.23 34.793,8.115z</Geometry>
+    <Geometry x:Key="Snap_SolidGeometry7">F1 M64,64z M0,0z M17.986,51.486C22.08,54.791 28.821,56.826 36.368,55.674 31.547,49.169 26.354,43.032 21.348,36.713 20.179,41.592 19.025,46.482 17.986,51.486z</Geometry>
+    <DrawingGroup x:Key="Snap_Solid_On_DrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+        <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="#FF0086AF" Geometry="{StaticResource Snap_SolidGeometry1}" />
+            <GeometryDrawing Brush="#FF0086AF" Geometry="{StaticResource Snap_SolidGeometry2}" />
+            <GeometryDrawing Brush="#FF0086AF" Geometry="{StaticResource Snap_SolidGeometry3}" />
+            <GeometryDrawing Brush="#FF0086AF" Geometry="{StaticResource Snap_SolidGeometry4}" />
+            <GeometryDrawing Brush="#FF0086AF" Geometry="{StaticResource Snap_SolidGeometry5}" />
+            <GeometryDrawing Brush="#FF0086AF" Geometry="{StaticResource Snap_SolidGeometry6}" />
+            <GeometryDrawing Brush="#FF0086AF" Geometry="{StaticResource Snap_SolidGeometry7}" />
+        </DrawingGroup>
+    </DrawingGroup>
+    <DrawingImage x:Key="Snap_SolidDrawingImage_On" Drawing="{StaticResource Snap_Solid_On_DrawingGroup}" />
+</ResourceDictionary>

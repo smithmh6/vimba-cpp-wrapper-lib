@@ -1,0 +1,63 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Geometry x:Key="Equalizer_OutlineGeometry1">F1 M64,64z M0,0z M48.833,11.5L14.834,11.5C9.379,11.5,8,13.213,8,18.667L8,45.001C8,50.454,9.379,52.5,14.834,52.5L48.833,52.5C54.286,52.5,56,50.454,56,45.001L56,18.667C56,13.213,54.286,11.5,48.833,11.5z M53,45.001C53,48.8,52.292,49.542,48.833,49.5L14.834,49.5C11.625,49.458,11,48.8,11,45.001L11,18.667C11,14.867,11.542,14.542,14.834,14.5L48.833,14.5C52.334,14.458,53,14.867,53,18.667L53,45.001z</Geometry>
+    <Geometry x:Key="Equalizer_OutlineGeometry2">F1 M64,64z M0,0z M23.8,40.225L16.8,40.225C15.971,40.225 15.3,39.553 15.3,38.725 15.3,37.897 15.971,37.225 16.8,37.225L23.8,37.225C24.629,37.225 25.3,37.897 25.3,38.725 25.3,39.553 24.629,40.225 23.8,40.225L23.8,40.225z</Geometry>
+    <Geometry x:Key="Equalizer_OutlineGeometry3">F1 M64,64z M0,0z M35.801,36.176L28.801,36.176C27.972,36.176 27.301,35.504 27.301,34.676 27.301,33.848 27.972,33.176 28.801,33.176L35.801,33.176C36.629,33.176 37.301,33.848 37.301,34.676 37.301,35.504 36.629,36.176 35.801,36.176L35.801,36.176z</Geometry>
+    <Geometry x:Key="Equalizer_OutlineGeometry4">F1 M64,64z M0,0z M47.518,38.725</Geometry>
+    <Geometry x:Key="Equalizer_OutlineGeometry5">F1 M64,64z M0,0z M40.518,38.725</Geometry>
+    <Geometry x:Key="Equalizer_OutlineGeometry6">F1 M64,64z M0,0z M46.976,40.225L39.976,40.225C39.148,40.225 38.476,39.553 38.476,38.725 38.476,37.897 39.148,37.225 39.976,37.225L46.976,37.225C47.804,37.225 48.476,37.897 48.476,38.725 48.476,39.553 47.804,40.225 46.976,40.225L46.976,40.225z</Geometry>
+    <DrawingGroup x:Key="Equalizer_OutlineDrawingGroup" ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+        <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}">
+                <GeometryDrawing.Geometry>
+                    <RectangleGeometry RadiusX="0" RadiusY="0" Rect="18.2,15.825,4.35,19.3" />
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}">
+                <GeometryDrawing.Geometry>
+                    <RectangleGeometry RadiusX="0" RadiusY="0" Rect="18.2,42.025,4.35,6" />
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}">
+                <GeometryDrawing.Geometry>
+                    <RectangleGeometry RadiusX="0" RadiusY="0" Rect="30.2,38.125,4.499,10.05" />
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}">
+                <GeometryDrawing.Geometry>
+                    <RectangleGeometry RadiusX="0" RadiusY="0" Rect="41.301,42.025,4.648,6" />
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}">
+                <GeometryDrawing.Geometry>
+                    <RectangleGeometry RadiusX="0" RadiusY="0" Rect="30.2,15.825,4.499,15.25" />
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}">
+                <GeometryDrawing.Geometry>
+                    <RectangleGeometry RadiusX="0" RadiusY="0" Rect="41.301,15.825,4.648,19.3" />
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Equalizer_OutlineGeometry1}" />
+        </DrawingGroup>
+        <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Equalizer_OutlineGeometry2}" />
+        </DrawingGroup>
+        <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Equalizer_OutlineGeometry3}" />
+        </DrawingGroup>
+        <GeometryDrawing Geometry="{StaticResource Equalizer_OutlineGeometry4}">
+            <GeometryDrawing.Pen>
+                <Pen Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Thickness="3" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+        </GeometryDrawing>
+        <GeometryDrawing Geometry="{StaticResource Equalizer_OutlineGeometry5}">
+            <GeometryDrawing.Pen>
+                <Pen Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Thickness="3" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+        </GeometryDrawing>
+        <DrawingGroup Opacity="1">
+            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}}" Geometry="{StaticResource Equalizer_OutlineGeometry6}" />
+        </DrawingGroup>
+    </DrawingGroup>
+    <DrawingImage x:Key="Equalizer_OutlineDrawingImage" Drawing="{StaticResource Equalizer_OutlineDrawingGroup}" />
+</ResourceDictionary>
